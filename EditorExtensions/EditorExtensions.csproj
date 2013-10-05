@@ -220,15 +220,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Adornments\Color\IntraTextAdornmentTagger.cs" />
-    <Compile Include="Classifications\BraceMatching.cs" />
+    <Compile Include="Classifications\CSS\BraceMatching.cs" />
     <Compile Include="Classifications\HTML\HtmlRegionTagger.cs" />
-    <Compile Include="Classifications\JavaScriptArrayOutlining.cs" />
-    <Compile Include="Classifications\JavaScriptHighlightWordTagger.cs" />
+    <Compile Include="Classifications\JavaScript\JavaScriptArrayOutlining.cs" />
+    <Compile Include="Classifications\JavaScript\JavaScriptHighlightWordTagger.cs" />
     <Compile Include="Classifications\Markdown\MarkdownClassificationTypes.cs" />
     <Compile Include="Classifications\Markdown\MarkdownClassifier.cs" />
     <Compile Include="Classifications\Markdown\MarkdownContentTypeDefinition.cs" />
-    <Compile Include="Classifications\ModernizrClassifier.cs" />
-    <Compile Include="Classifications\JavaScriptOutlining.cs" />
+    <Compile Include="Classifications\CSS\ModernizrClassifier.cs" />
+    <Compile Include="Classifications\JavaScript\JavaScriptOutlining.cs" />
     <Compile Include="Classifications\RobotsTxt\RobotsTxtClassificationTypes.cs" />
     <Compile Include="Classifications\RobotsTxt\RobotsTxtClassifier.cs" />
     <Compile Include="Classifications\RobotsTxt\RobotsTxtContentTypeDefinition.cs" />
@@ -265,112 +265,112 @@
     <Compile Include="Commands\JsDocRegistry.cs" />
     <Compile Include="Commands\TypeThrough\LESSTypeThroughControllerProvider.cs" />
     <Compile Include="Commands\TypeThrough\CSSTypeThroughControllerProvider.cs" />
-    <Compile Include="Classifications\Base64TaggerProvider.cs" />
-    <Compile Include="Classifications\CssHighlightWordTagger.cs" />
-    <Compile Include="Classifications\JavaScriptRegionTagger.cs" />
-    <Compile Include="Classifications\ValueTaggerProvider.cs" />
-    <Compile Include="Classifications\VendorClassifier.cs" />
+    <Compile Include="Classifications\CSS\Base64TaggerProvider.cs" />
+    <Compile Include="Classifications\CSS\CssHighlightWordTagger.cs" />
+    <Compile Include="Classifications\JavaScript\JavaScriptRegionTagger.cs" />
+    <Compile Include="Classifications\CSS\ValueTaggerProvider.cs" />
+    <Compile Include="Classifications\CSS\VendorClassifier.cs" />
     <Compile Include="Commands\Css\RetriggerCommandTarget.cs" />
     <Compile Include="Commands\MoveRuleCommandTarget.cs" />
     <Compile Include="Commands\TypeThrough\ProvisionalText.cs" />
     <Compile Include="Commands\TypeThrough\TypeThroughController.cs" />
-    <Compile Include="Completion\CompletionListEntry.cs" />
-    <Compile Include="Completion\CompletionProviders\ClassCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\AnimationNameCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\ColorCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\FontFamilyCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\RegionCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\ImportantCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\FontCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\UrlPickerCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\IdCompletionProvider.cs" />
-    <Compile Include="Completion\CompletionProviders\TagCompletionProvider.cs" />
-    <Compile Include="Completion\ContextProviders\ClassContextProvider.cs" />
-    <Compile Include="Completion\ContextProviders\LessPseudoContextProvider.cs" />
-    <Compile Include="Completion\ContextProviders\UrlPickerContextProvider.cs" />
-    <Compile Include="Completion\ContextProviders\IdContextProvider.cs" />
-    <Compile Include="Completion\ContextProviders\TagContextProvider.cs" />
-    <Compile Include="Completion\CustomCompletionListEntry.cs" />
-    <Compile Include="Completion\Filter\GradientCompletionListFilter.cs" />
-    <Compile Include="Completion\RegionCompletionListEntry.cs" />
-    <Compile Include="Completion\Filter\WebkitScrollbarCompletionListFilter.cs" />
-    <Compile Include="Completion\Filter\HideUnsupportedCompletionListFilter.cs" />
-    <Compile Include="Completion\FontFamilyCompletionListEntry.cs" />
+    <Compile Include="Completion\CSS\CompletionListEntry.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\ClassCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\AnimationNameCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\ColorCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\FontFamilyCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\RegionCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\ImportantCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\FontCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\UrlPickerCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\IdCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\TagCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\ClassContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\LessPseudoContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\UrlPickerContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\IdContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\TagContextProvider.cs" />
+    <Compile Include="Completion\CSS\CustomCompletionListEntry.cs" />
+    <Compile Include="Completion\CSS\Filter\GradientCompletionListFilter.cs" />
+    <Compile Include="Completion\CSS\RegionCompletionListEntry.cs" />
+    <Compile Include="Completion\CSS\Filter\WebkitScrollbarCompletionListFilter.cs" />
+    <Compile Include="Completion\CSS\Filter\HideUnsupportedCompletionListFilter.cs" />
+    <Compile Include="Completion\CSS\FontFamilyCompletionListEntry.cs" />
     <Compile Include="Completion\RobotsTxt\RobotsCompletionController.cs" />
     <Compile Include="Completion\RobotsTxt\RobotsCompletionSource.cs" />
-    <Compile Include="Completion\UrlPickerCompletionListEntry.cs" />
-    <Compile Include="Completion\Filter\HideInheritInitialCompletionListFilter.cs" />
+    <Compile Include="Completion\CSS\UrlPickerCompletionListEntry.cs" />
+    <Compile Include="Completion\CSS\Filter\HideInheritInitialCompletionListFilter.cs" />
     <Compile Include="DropTargets\BundleDrop.cs" />
     <Compile Include="DropTargets\StylesheetDrop.cs" />
     <Compile Include="DropTargets\FontDrop.cs" />
     <Compile Include="DropTargets\ImageDrop.cs" />
     <Compile Include="DropTargets\TypeScriptDrop.cs" />
-    <Compile Include="ErrorTags\Filters\ScssErrorFilter.cs" />
-    <Compile Include="ErrorTags\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
-    <Compile Include="ErrorTags\LESS\Filters\LessExtendCssErrorFilter.cs" />
-    <Compile Include="ErrorTags\Providers\ColorValuesInRangeErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Filters\ScssErrorFilter.cs" />
+    <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
+    <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />
+    <Compile Include="Validation\CSS\Providers\ColorValuesInRangeErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\MsViewState.cs" />
-    <Compile Include="ErrorTags\Providers\HoverOrderErrorTagProvider.cs" />
-    <Compile Include="ErrorTags\Providers\DisplayInlineErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\MsViewState.cs" />
+    <Compile Include="Validation\CSS\Providers\HoverOrderErrorTagProvider.cs" />
+    <Compile Include="Validation\CSS\Providers\DisplayInlineErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\DuplicatePropertyErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\DuplicatePropertyErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\DuplicateSelectorErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\DuplicateSelectorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\EmbedImagesErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\EmbedImagesErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\Ie10PrefixErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\Ie10PrefixErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\InvalidVendorErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\InvalidVendorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\MissingStandardDirectiveErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\MissingStandardDirectiveErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\MissingVendorDirectiveErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\MissingVendorDirectiveErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\MissingVendorErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\MissingVendorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\MissingVendorPseudoErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\MissingVendorPseudoErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\OverQualifiedSelectorErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\OverQualifiedSelectorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\OverriddenPropertyErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\OverriddenPropertyErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\ShorthandErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\ShorthandErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\StarSelectorErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\StarSelectorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\UnknownTagErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\UnknownTagErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\VendorOrderErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\VendorOrderErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\W3cOnlyErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\W3cOnlyErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\Providers\ZeroUnitErrorTagProvider.cs">
+    <Compile Include="Validation\CSS\Providers\ZeroUnitErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ErrorTags\SelectorErrorTag.cs" />
-    <Compile Include="ErrorTags\Filters\Backslash9CssErrorFilter.cs" />
-    <Compile Include="ErrorTags\Filters\MsFilterCssErrorFilter.cs" />
-    <Compile Include="ErrorTags\Filters\MsKeyframesCssErrorFilter.cs" />
+    <Compile Include="Validation\CSS\SelectorErrorTag.cs" />
+    <Compile Include="Validation\CSS\Filters\Backslash9CssErrorFilter.cs" />
+    <Compile Include="Validation\CSS\Filters\MsFilterCssErrorFilter.cs" />
+    <Compile Include="Validation\CSS\Filters\MsKeyframesCssErrorFilter.cs" />
     <Compile Include="ExtensionMethods\AtDirectiveExtensions.cs" />
     <Compile Include="ExtensionMethods\IVsExtensions.cs" />
     <Compile Include="Commands\JavaScript\JsHintRunner.cs" />
@@ -386,8 +386,8 @@
     <Compile Include="Margin\ScriptRunnerBase.cs" />
     <Compile Include="Margin\LessCompiler.cs" />
     <Compile Include="Helpers\OptionHelpers.cs" />
-    <Compile Include="HTML\Base64ChromeAction.cs" />
-    <Compile Include="HTML\MathMlSchemaFileInfoProvider.cs" />
+    <Compile Include="SmartTags\HTML\Base64ChromeAction.cs" />
+    <Compile Include="SmartTags\HTML\MathMlSchemaFileInfoProvider.cs" />
     <None Include="app.config" />
     <Compile Include="Commands\JavaScript\JsHintProjectRunner.cs">
       <SubType>Code</SubType>
@@ -409,7 +409,7 @@
     <Compile Include="MenuItems\Diff.cs" />
     <Compile Include="MenuItems\Transform.cs" />
     <Compile Include="MenuItems\Encoding.cs" />
-    <Compile Include="NavigateTo\GoToLineProviderFactory.cs" />
+    <Compile Include="NavigateTo\CSS\GoToLineProviderFactory.cs" />
     <Compile Include="Options\CoffeeScript.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -464,18 +464,18 @@
     <Compile Include="Schemas\ModernizrProvider.cs" />
     <Compile Include="Schemas\W3cOnlySchemaFilter.cs" />
     <Compile Include="Schemas\XmlColorPaletteProvider.cs" />
-    <Compile Include="SmartTags\Actions\LessExtractVariableSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\SortSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\MissingPseudoSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\UpdateEmbedSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\MissingStandardDirectiveSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\VendorDirectiveSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\OverQualifySelectorSmartTagAction.cs" />
-    <Compile Include="SmartTags\Providers\LessExtractVariableSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\SortSmartTagProvider.cs" />
-    <Compile Include="ErrorTags\Filters\CustomCssErrorFilter.cs" />
+    <Compile Include="SmartTags\CSS\Actions\LessExtractVariableSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\SortSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\MissingPseudoSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\UpdateEmbedSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\MissingStandardDirectiveSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\VendorDirectiveSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\OverQualifySelectorSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Providers\LessExtractVariableSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\SortSmartTagProvider.cs" />
+    <Compile Include="Validation\CSS\Filters\CustomCssErrorFilter.cs" />
     <Compile Include="Commands\ArrowsCommandTarget.cs" />
-    <Compile Include="ErrorTags\SimpleErrorTag.cs" />
+    <Compile Include="Validation\CSS\SimpleErrorTag.cs" />
     <Compile Include="ExtensionMethods\ColorModelExtensions.cs" />
     <Compile Include="ExtensionMethods\DeclarationExtensions.cs" />
     <Compile Include="Helpers\ProjectHelpers.cs" />
@@ -484,26 +484,26 @@
     <Compile Include="QuickInfo\Image\ImageQuickInfoControllerProvider.cs" />
     <Compile Include="QuickInfo\Image\ImageQuickInfoController.cs" />
     <Compile Include="QuickInfo\Image\ImageQuickInfoSourceProvider.cs" />
-    <Compile Include="SmartTags\Actions\ColorConverterSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\VendorOrderSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\MissingStandardSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\RemoveSelectorHackSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\VendorSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\SelectorHackSmartTagAction.cs" />
-    <Compile Include="SmartTags\Actions\ReverseEmbedSmartTagAction.cs" />
-    <Compile Include="SmartTags\CssSmartTagActionBase.cs" />
-    <Compile Include="SmartTags\ICssSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\ColorConverterSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\MissingPseudoSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\UpdateEmbedSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\MissingStandardDirectiveSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\MissingVendorDirectiveSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\OverQualifiedSelectorSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\VendorOrderSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\MissingVendorSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\SelectorHackSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\ReverseEmbedSmartTagProvider.cs" />
-    <Compile Include="SmartTags\Providers\EmbedSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Actions\ColorConverterSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\VendorOrderSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\MissingStandardSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\RemoveSelectorHackSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\VendorSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\SelectorHackSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\Actions\ReverseEmbedSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\CssSmartTagActionBase.cs" />
+    <Compile Include="SmartTags\CSS\ICssSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\ColorConverterSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\MissingPseudoSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\UpdateEmbedSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\MissingStandardDirectiveSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\MissingVendorDirectiveSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\OverQualifiedSelectorSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\VendorOrderSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\MissingVendorSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\SelectorHackSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\ReverseEmbedSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\Providers\EmbedSmartTagProvider.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -513,10 +513,10 @@
     <Compile Include="EditorExtensionsPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
-    <Compile Include="SmartTags\CssSmartTagProvider.cs" />
-    <Compile Include="SmartTags\CssSmartTag.cs" />
-    <Compile Include="SmartTags\Actions\EmbedSmartTagAction.cs" />
-    <Compile Include="SmartTags\CssSmartTagger.cs" />
+    <Compile Include="SmartTags\CSS\CssSmartTagProvider.cs" />
+    <Compile Include="SmartTags\CSS\CssSmartTag.cs" />
+    <Compile Include="SmartTags\CSS\Actions\EmbedSmartTagAction.cs" />
+    <Compile Include="SmartTags\CSS\CssSmartTagger.cs" />
     <Compile Include="Helpers\CssItemCollector.cs" />
     <Compile Include="Options\WebEssentialsSettings.cs" />
   </ItemGroup>
