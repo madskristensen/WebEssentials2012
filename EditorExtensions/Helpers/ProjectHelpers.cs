@@ -31,8 +31,13 @@ namespace MadsKristensen.EditorExtensions
                 {
                     activeProject = activeSolutionProjects.GetValue(0) as Project;
                 }
-
-                return activeProject.Properties.Item("FullPath").Value.ToString();
+                
+                if (activeProject == null)
+                {
+                    return string.Empty;
+                }
+                
+                return activeProject.Properties.Item("FullPath").Value.ToString();                
             }
             catch (Exception ex)
             {
