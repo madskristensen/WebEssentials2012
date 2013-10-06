@@ -31,6 +31,13 @@ namespace MadsKristensen.EditorExtensions
                 {
                     activeProject = activeSolutionProjects.GetValue(0) as Project;
                 }
+
+                if (activeProject == null)
+                {
+                    var doc = dte.ActiveDocument;
+                    if (doc != null && !string.IsNullOrEmpty(doc.FullName))
+                        return GetProjectFolder(doc.FullName);
+                }
                 
                 if (activeProject == null)
                 {
@@ -205,6 +212,26 @@ namespace MadsKristensen.EditorExtensions
             return Path.GetDirectoryName(solution.FullName);
         }
 
+        private static string GetProjectFolder(ProjectItem item)
+        {
+            if (item == null || item.ContainingProject == null || string.IsNullOrEmpty(item.ContainingProject.FullName)) // Solution items
+                return null;
+
+            var fullPath = item.ContainingProject.Properties.Item("FullPath").Value.ToString();
+
+            if (Directory.Exists(fullPath))
+            {
+                return fullPath;
+            }
+
+            if (File.Exists(fullPath))
+            {
+                return Path.GetDirectoryName(fullPath);
+            }
+
+            return string.Empty;
+        }
+
         public static string GetProjectFolder(string fileNameOrFolder)
         {
             if (string.IsNullOrEmpty(fileNameOrFolder))
@@ -212,10 +239,7 @@ namespace MadsKristensen.EditorExtensions
 
             ProjectItem item = EditorExtensionsPackage.DTE.Solution.FindProjectItem(fileNameOrFolder);
 
-            if (item == null || item.ContainingProject == null || string.IsNullOrEmpty(item.ContainingProject.FullName)) // Solution items
-                return null;
-
-            return item.ContainingProject.Properties.Item("FullPath").Value.ToString();
+            return GetProjectFolder(item);
         }
 
         public static IEnumerable<ProjectItem> GetSelectedItems()
