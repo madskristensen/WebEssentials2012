@@ -4,13 +4,13 @@ using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using System;
 using System.Collections.Generic;
-using System.Windows.Threading;
 
 namespace MadsKristensen.EditorExtensions
 {
     internal class RemoveCssSignatureHelpSource : ISignatureHelpSource
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
+        private bool _isDisposed;
 
         public RemoveCssSignatureHelpSource(ITextBuffer buffer)
         {
@@ -50,13 +50,13 @@ namespace MadsKristensen.EditorExtensions
                 : null;
         }
 
-        private bool m_isDisposed;
+
         public void Dispose()
         {
-            if (!m_isDisposed)
+            if (!_isDisposed)
             {
                 GC.SuppressFinalize(this);
-                m_isDisposed = true;
+                _isDisposed = true;
             }
         }
     }

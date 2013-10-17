@@ -21,15 +21,11 @@ namespace MadsKristensen.EditorExtensions
 
             if (sel.Text == "*")
             {
-                //string afterStar = sel.Text.Length > index + 1 ? sel.Text.Substring(index + 1) : null;
-                //if (afterStar == null || !afterStar.Trim().StartsWith("html", StringComparison.OrdinalIgnoreCase))
-                //{
                     string errorMessage = string.Format(CultureInfo.InvariantCulture, Resources.PerformanceDontUseStarSelector);
 
                     SimpleErrorTag tag = new SimpleErrorTag(sel, errorMessage);
 
                     context.AddError(tag);
-                //}
             }
 
             return ItemCheckResult.Continue;

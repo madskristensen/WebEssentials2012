@@ -7,7 +7,7 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class CompletionListEntry : ICssCompletionListEntry
     {
-        private string _name;
+        private readonly string _name;
 
         public CompletionListEntry(string name, int sortingPriority = 0)
         {

@@ -16,10 +16,10 @@ namespace MadsKristensen.EditorExtensions
         public const string _fileName = "WE-settings.xml";
         public const string _solutionFolder = "Solution Items";
 
-        private static SortedDictionary<string, object> _cache = DefaultSettings();
+        private static readonly SortedDictionary<string, object> _cache = DefaultSettings();
         private static bool _inProgress;
-        private static object _syncFileRoot = new object();
-        private static object _syncCacheRoot = new object();
+        private static readonly object _syncFileRoot = new object();
+        private static readonly object _syncCacheRoot = new object();
 
         public Settings()
         {
@@ -55,15 +55,11 @@ namespace MadsKristensen.EditorExtensions
 
         public static void Save(string file = null)
         {
-            //_dispatcher.BeginInvoke(new Action(() =>
-            //{
             Task.Run(() =>
             {
                 SaveToDisk(file);
                 UpdateStatusBar("updated");
             });
-
-            //}), DispatcherPriority.ApplicationIdle, null);
         }
 
         internal static void CreateSolutionSettings()
@@ -90,7 +86,6 @@ namespace MadsKristensen.EditorExtensions
                 }
 
                 project.ProjectItems.AddFromFile(path);
-                //EditorExtensionsPackage.DTE.ItemOperations.OpenFile(path);
                 UpdateStatusBar("applied");
             }
         }
@@ -224,7 +219,7 @@ namespace MadsKristensen.EditorExtensions
 
         public static string GetSolutionFilePath()
         {
-            EnvDTE.Solution solution = EditorExtensionsPackage.DTE.Solution;
+            Solution solution = EditorExtensionsPackage.DTE.Solution;
 
             if (solution == null || string.IsNullOrEmpty(solution.FullName))
                 return null;

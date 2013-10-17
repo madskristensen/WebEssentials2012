@@ -15,10 +15,11 @@ namespace MadsKristensen.EditorExtensions
     internal class DeclarationQuickInfo : IQuickInfoSource
     {
         private DeclarationQuickInfoSourceProvider _provider;
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private CssTree _tree;
         private static readonly string[] browserAbbr = new[] { "C", "FF", "IE", "O", "S" };
-        private ICssSchemaInstance _rootSchema;
+        private readonly ICssSchemaInstance _rootSchema;
+        private bool _isDisposed;
 
         public DeclarationQuickInfo(DeclarationQuickInfoSourceProvider provider, ITextBuffer buffer)
         {
@@ -135,7 +136,6 @@ namespace MadsKristensen.EditorExtensions
 
                 if (!string.IsNullOrEmpty(syntax))
                 {
-                    //var example = CreateExample(syntax);
                     qiContent.Add("Example: " + syntax);
                 }
 
@@ -183,38 +183,12 @@ namespace MadsKristensen.EditorExtensions
             if (index > -1)
                 value = value.Substring(0, index);
 
-            //if (value.StartsWith("1") || value.StartsWith("2") || value.StartsWith("3"))
-            //    value = "all";
-
             return new KeyValuePair<string, string>(name, value);
         }
 
-        //private static UIElement CreateExample(string example)
-        //{
-        //    StackPanel panel = new StackPanel();
-        //    panel.Orientation = Orientation.Horizontal;
-        //    panel.Margin = new Thickness(0, 0, 0, 5);
-
-        //    TextBlock label = new TextBlock();
-        //    label.Text = "Example: ";
-        //    label.FontWeight = FontWeights.Bold;
-        //    label.FontSize = 11;
-        //    label.FontFamily = new FontFamily("Consolas");
-        //    panel.Children.Add(label);
-
-        //    TextBlock value = new TextBlock();
-        //    value.Text = example;
-        //    value.FontSize = 11;
-        //    value.FontFamily = new FontFamily("Consolas");
-        //    panel.Children.Add(value);
-
-        //    return panel;
-        //}
-
         private static UIElement CreateBrowserList(Dictionary<string, string> browsers)
         {
-            StackPanel panel = new System.Windows.Controls.StackPanel();
-            panel.Orientation = Orientation.Horizontal;
+            StackPanel panel = new StackPanel {Orientation = Orientation.Horizontal};
 
             foreach (string name in browserAbbr)
             {
@@ -263,28 +237,27 @@ namespace MadsKristensen.EditorExtensions
         /// </summary>
         public bool EnsureTreeInitialized()
         {
-            if (_tree == null)// && WebEditor.GetHost(CssContentTypeDefinition.CssContentType) != null)
+            if (_tree == null)
             {
                 try
                 {
                     CssEditorDocument document = CssEditorDocument.FromTextBuffer(_buffer);
                     _tree = document.Tree;
                 }
-                catch (Exception)
-                {
-                }
+                catch 
+                { }
             }
 
             return _tree != null;
         }
 
-        private bool m_isDisposed;
+
         public void Dispose()
         {
-            if (!m_isDisposed)
+            if (!_isDisposed)
             {
                 GC.SuppressFinalize(this);
-                m_isDisposed = true;
+                _isDisposed = true;
             }
         }
     }

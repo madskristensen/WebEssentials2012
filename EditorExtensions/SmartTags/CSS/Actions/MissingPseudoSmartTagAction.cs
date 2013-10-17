@@ -9,10 +9,10 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class MissingPseudoSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private ParseItem _pseudo;
-        private Selector _selector;
-        private IEnumerable<string> _missingPseudos;
+        private readonly ITrackingSpan _span;
+        private readonly ParseItem _pseudo;
+        private readonly Selector _selector;
+        private readonly IEnumerable<string> _missingPseudos;
 
         public MissingPseudoSmartTagAction(ITrackingSpan span, Selector selector, ParseItem pseudo, IEnumerable<string> missingPseudos)
         {

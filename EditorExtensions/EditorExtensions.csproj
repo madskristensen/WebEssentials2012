@@ -305,7 +305,6 @@
     <Compile Include="DropTargets\FontDrop.cs" />
     <Compile Include="DropTargets\ImageDrop.cs" />
     <Compile Include="DropTargets\TypeScriptDrop.cs" />
-    <Compile Include="Validation\CSS\Filters\ScssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />
     <Compile Include="Validation\CSS\Providers\ColorValuesInRangeErrorTagProvider.cs">
@@ -340,13 +339,7 @@
     <Compile Include="Validation\CSS\Providers\MissingVendorErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Validation\CSS\Providers\MissingVendorPseudoErrorTagProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Validation\CSS\Providers\OverQualifiedSelectorErrorTagProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Validation\CSS\Providers\OverriddenPropertyErrorTagProvider.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Validation\CSS\Providers\ShorthandErrorTagProvider.cs">
@@ -381,12 +374,10 @@
     <Compile Include="Margin\CompilerError.cs" />
     <Compile Include="Margin\CompilerResult.cs" />
     <Compile Include="Margin\MarkdownMargin.cs" />
-    <Compile Include="Margin\ScssMargin.cs" />
     <Compile Include="Margin\LessProjectCompiler.cs" />
     <Compile Include="Margin\ScriptRunnerBase.cs" />
     <Compile Include="Margin\LessCompiler.cs" />
     <Compile Include="Helpers\OptionHelpers.cs" />
-    <Compile Include="SmartTags\HTML\Base64ChromeAction.cs" />
     <Compile Include="SmartTags\HTML\MathMlSchemaFileInfoProvider.cs" />
     <None Include="app.config" />
     <Compile Include="Commands\JavaScript\JsHintProjectRunner.cs">
@@ -494,7 +485,6 @@
     <Compile Include="SmartTags\CSS\CssSmartTagActionBase.cs" />
     <Compile Include="SmartTags\CSS\ICssSmartTagProvider.cs" />
     <Compile Include="SmartTags\CSS\Providers\ColorConverterSmartTagProvider.cs" />
-    <Compile Include="SmartTags\CSS\Providers\MissingPseudoSmartTagProvider.cs" />
     <Compile Include="SmartTags\CSS\Providers\UpdateEmbedSmartTagProvider.cs" />
     <Compile Include="SmartTags\CSS\Providers\MissingStandardDirectiveSmartTagProvider.cs" />
     <Compile Include="SmartTags\CSS\Providers\MissingVendorDirectiveSmartTagProvider.cs" />

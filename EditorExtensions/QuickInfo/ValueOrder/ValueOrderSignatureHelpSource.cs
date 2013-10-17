@@ -10,7 +10,7 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class ValueOrderSignatureHelpSource : ISignatureHelpSource
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
 
         public ValueOrderSignatureHelpSource(ITextBuffer buffer)
         {
@@ -70,13 +70,13 @@ namespace MadsKristensen.EditorExtensions
                 : null;
         }
 
-        private bool m_isDisposed;
+        private bool _isDisposed;
         public void Dispose()
         {
-            if (!m_isDisposed)
+            if (!_isDisposed)
             {
                 GC.SuppressFinalize(this);
-                m_isDisposed = true;
+                _isDisposed = true;
             }
         }
     }

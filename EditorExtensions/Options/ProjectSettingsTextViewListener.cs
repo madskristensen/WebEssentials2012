@@ -26,10 +26,7 @@ namespace MadsKristensen.EditorExtensions.Options
         {
             if (e.FileActionType == FileActionTypes.ContentSavedToDisk && e.FilePath.EndsWith(Settings._fileName))
             {
-                Task.Run(() =>
-                {
-                    Settings.UpdateCache();
-                });
+                Task.Run(() => Settings.UpdateCache());
             }
         }
     }

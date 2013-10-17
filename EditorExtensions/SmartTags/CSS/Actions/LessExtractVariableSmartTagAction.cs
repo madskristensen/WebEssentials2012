@@ -9,8 +9,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class LessExtractVariableSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private ParseItem _item;
+        private readonly ITrackingSpan _span;
+        private readonly ParseItem _item;
 
         public LessExtractVariableSmartTagAction(ITrackingSpan span, ParseItem item)
         {

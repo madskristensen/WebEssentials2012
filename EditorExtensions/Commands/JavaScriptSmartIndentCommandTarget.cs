@@ -32,9 +32,9 @@ namespace MadsKristensen.EditorExtensions
 
     class JavaScriptSmartIndent : IOleCommandTarget
     {
-        private ITextView _textView;
-        private IOleCommandTarget _nextCommandTarget;
-        private ICompletionBroker _broker;
+        private readonly ITextView _textView;
+        private readonly IOleCommandTarget _nextCommandTarget;
+        private readonly ICompletionBroker _broker;
 
         public JavaScriptSmartIndent(IVsTextView adapter, ITextView textView, ICompletionBroker broker)
         {

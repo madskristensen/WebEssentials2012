@@ -11,7 +11,7 @@ namespace MadsKristensen.EditorExtensions
     [Order(After = "Default Declaration")]
     internal class Ie10PrefixErrorTagProvider : ICssItemChecker
     {
-        private static readonly string _message = "Validation (WE): {0} no longer applies to Internet Explorer 10. Use the standard implementation instead.";
+        const string _message = "Validation (WE): {0} no longer applies to Internet Explorer 10. Use the standard implementation instead.";
 
         public ItemCheckResult CheckItem(ParseItem item, ICssCheckerContext context)
         {

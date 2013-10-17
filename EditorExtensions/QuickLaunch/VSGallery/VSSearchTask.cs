@@ -9,7 +9,7 @@ namespace Microsoft.MSDNSearch
 {
     public class VSSearchTask : VsSearchTask
     {
-        private VSSearchProvider provider;
+        private readonly VSSearchProvider provider;
 
         public VSSearchTask(VSSearchProvider provider, uint dwCookie, IVsSearchQuery pSearchQuery, IVsSearchProviderCallback pSearchCallback)
             : base(dwCookie, pSearchQuery, pSearchCallback)
@@ -46,7 +46,7 @@ namespace Microsoft.MSDNSearch
                         var titleNodes = entry.GetElementsByTagName("title");
                         if (titleNodes.Count > 0)
                         {
-                            title = (titleNodes[0] as XmlElement).InnerText;
+                            title = titleNodes[0].InnerText;
                         }
 
                         //link / url / id tag provides the URL linking the result string to its page
@@ -58,7 +58,7 @@ namespace Microsoft.MSDNSearch
 
                         if (linkNodes.Count > 0)
                         {
-                            url = (linkNodes[0] as XmlElement).InnerText;
+                            url = linkNodes[0].InnerText;
                         }
 
                         if (title != null && url != null)

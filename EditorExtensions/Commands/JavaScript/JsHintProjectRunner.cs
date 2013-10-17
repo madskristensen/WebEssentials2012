@@ -7,8 +7,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class JsHintProjectRunner : IDisposable
     {
-        private ITextDocument _document;
-        private JsHintRunner _runner;
+        private readonly ITextDocument _document;
+        private readonly JsHintRunner _runner;
         private bool _isDisposed;
 
         public JsHintProjectRunner(ITextDocument document)
@@ -54,7 +54,6 @@ namespace MadsKristensen.EditorExtensions
         {
             if (!_isDisposed)
             {
-                //_document.Dispose();
                 _runner.Dispose();
             }
 

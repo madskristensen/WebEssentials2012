@@ -40,8 +40,6 @@ namespace MadsKristensen.EditorExtensions
             {
                 if (!visitorRules.Items.Any(d => d.Keyword != null && "@" + d.Keyword.Text == item))
                     yield return item;
-                //if (!rule.Declarations.Any(d => d.PropertyName != null && d.PropertyName.Text == item))
-                //    yield return item;
             }
         }
 

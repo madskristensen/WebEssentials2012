@@ -103,7 +103,7 @@ namespace MadsKristensen.EditorExtensions
 
         private static void Update(ParseItem rule, CssTree tree)
         {
-            BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod;
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod;
             object[] parameters = new object[3];
             parameters[0] = new ParseItemList();
             parameters[1] = new ParseItemList();
@@ -118,7 +118,7 @@ namespace MadsKristensen.EditorExtensions
     [Order(After = "Default Declaration")]
     internal class DisplayInlineErrorTagProvider : ICssItemChecker
     {
-        private static string[] invalidProperties = new[] { "margin-top", "margin-bottom", "height", "width" };
+        private static readonly string[] _invalidProperties = new[] { "margin-top", "margin-bottom", "height", "width" };
 
         public ItemCheckResult CheckItem(ParseItem item, ICssCheckerContext context)
         {
@@ -131,7 +131,7 @@ namespace MadsKristensen.EditorExtensions
             if (!isInline)
                 return ItemCheckResult.Continue;
 
-            IEnumerable<Declaration> invalids = rule.Declarations.Where(d => invalidProperties.Contains(d.PropertyName.Text));
+            IEnumerable<Declaration> invalids = rule.Declarations.Where(d => _invalidProperties.Contains(d.PropertyName.Text));
 
             foreach (Declaration invalid in invalids)
             {

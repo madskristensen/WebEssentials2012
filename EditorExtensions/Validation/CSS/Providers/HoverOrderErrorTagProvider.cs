@@ -1,5 +1,4 @@
 ﻿using Microsoft.CSS.Core;
-using Microsoft.CSS.Editor;
 using Microsoft.VisualStudio.Utilities;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,6 @@ namespace MadsKristensen.EditorExtensions
                 return ItemCheckResult.Continue;
 
             ParseItem next = item.NextSibling;
-            //ParseItem prev = item.PreviousSibling;
-            SimpleSelector sel = item.FindType<SimpleSelector>();
-
-            //if (item.Text == ":hover" && prev != null && _invalids.Contains(prev.Text))
-            //{
-            //    string error = string.Format(Resources.ValidationHoverOrder, prev.Text);
-            //    context.AddError(new SimpleErrorTag(item, error, CssErrorFlags.TaskListError | CssErrorFlags.UnderlineRed));
-            //}
 
             if (next != null)
             {
@@ -44,23 +35,6 @@ namespace MadsKristensen.EditorExtensions
 
             return ItemCheckResult.Continue;
         }
-
-        //public static bool IsPseudoElement(ParseItem item)
-        //{
-        //    if (item.Text.StartsWith("::"))
-        //        return true;
-
-        //    var schema = CssSchemaManager.SchemaManager.GetSchemaRoot(null);
-        //    return schema.GetPseudo(":" + item.Text) != null;
-        //}
-
-        private static List<string> _invalids = new List<string>()
-        {
-            ":before",
-            "::before",
-            ":after",
-            "::after",
-        };
 
         public IEnumerable<Type> ItemTypes
         {

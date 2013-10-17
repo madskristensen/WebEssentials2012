@@ -80,10 +80,7 @@ namespace MadsKristensen.EditorExtensions
 
         protected override bool CanWriteToDisk(string source)
         {
-            //var parser = new Microsoft.CSS.Core.CssParser();
-            //StyleSheet stylesheet = parser.Parse(source, false);
-
-            return true;// !string.IsNullOrWhiteSpace(stylesheet.Text);
+            return true;
         }
     }
 }

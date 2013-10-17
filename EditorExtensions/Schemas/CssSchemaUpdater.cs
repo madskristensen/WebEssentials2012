@@ -17,7 +17,7 @@ namespace MadsKristensen.EditorExtensions
     [ExportMetadata("ContentType", CssContentTypeDefinition.CssContentType)]
     internal class CssSchemaUpdater : IWebTextBufferListener
     {
-        private static string _path = Path.Combine(WebEditor.Host.UserFolder, @"schemas\css");
+        private static readonly string _path = Path.Combine(WebEditor.Host.UserFolder, @"schemas\css");
         private static DateTime _lastRequest;
         private const int _days = 1;
 

@@ -26,7 +26,7 @@ namespace MadsKristensen.EditorExtensions
 
     class RobotsTxtCompletionSource : ICompletionSource
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private bool _disposed = false;
         private static ImageSource _glyph;
 

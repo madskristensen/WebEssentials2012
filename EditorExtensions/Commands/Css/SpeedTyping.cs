@@ -34,11 +34,6 @@ namespace MadsKristensen.EditorExtensions
 
         public int Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
         {
-            //foreach (OutputWindowPane item in WebEssentialsPackage.dte.ToolWindows.OutputWindow.OutputWindowPanes)
-            //{
-            //    item.OutputString(nCmdID.ToString() + Environment.NewLine);
-            //}
-
             if (pguidCmdGroup == VSConstants.VSStd2K && WESettings.GetBoolean(WESettings.Keys.EnableSpeedTyping))
             {
                 switch ((VSConstants.VSStd2KCmdID)nCmdID)
@@ -106,100 +101,6 @@ namespace MadsKristensen.EditorExtensions
 
             return false;
         }
-
-        //private int JumpOut()
-        //{
-        //    int result = VSConstants.S_FALSE;
-        //    var span = _textView.Selection.SelectedSpans[0];
-        //    var position = span.Start.Position;
-        //    var line = span.Start.GetContainingLine();
-        //    var classifications = _aggregator.GetClassifier(_textView.TextBuffer).GetClassificationSpans(line.Extent);
-
-        //    _dte.UndoContext.Open("Jump out of brace");
-        //    try
-        //    {
-        //        foreach (var classification in classifications)
-        //        {
-        //            if (IsPropertyValue(classification) && IsPropertyValueEligible(line, position))
-        //            {
-        //                CommitStatementCompletion();
-        //                line = _textView.TextSnapshot.GetLineFromPosition(position);
-        //                using (ITextEdit edit = _textView.TextBuffer.CreateEdit())
-        //                {
-        //                    edit.Replace(line.Extent, line.Extent.GetText().TrimEnd() + ";");
-        //                    edit.Apply();
-        //                }
-        //            }
-        //            else if (IsSelector(classification) || (IsPropertyName(classification) && !line.Extent.GetText().Contains(":")))
-        //            {
-        //                return VSConstants.S_FALSE;
-        //            }
-        //        }
-
-        //        var text = _textView.TextSnapshot.GetText();
-        //        int start = text.LastIndexOf('{', position - 1);
-        //        int middle = text.IndexOf('{', position - 1);
-        //        int end = text.IndexOf('}', position - 1);
-        //        int emptyLines = ResolveEmptyLines(end);
-
-        //        string blanks = string.Empty;
-        //        if (emptyLines < 3)
-        //        {
-        //            for (int i = 0; i < (3 - emptyLines); i++)
-        //            {
-        //                blanks += "\n";
-        //            }
-        //        }
-
-        //        if ((end < middle || middle == -1) && start < position && end > position)
-        //        {
-        //            using (ITextEdit edit = _textView.TextBuffer.CreateEdit())
-        //            {
-        //                edit.Replace(_textView.TextSnapshot.GetLineFromPosition(end).Extent, "}" + blanks);
-
-        //                if (string.IsNullOrWhiteSpace(line.GetText()))
-        //                {
-        //                    edit.Delete(line.ExtentIncludingLineBreak);
-        //                    end = end - line.ExtentIncludingLineBreak.Length;
-        //                }
-
-        //                edit.Apply();
-        //                result = VSConstants.S_OK;
-        //            }
-
-        //            _textView.Caret.MoveTo(new SnapshotPoint(_textView.TextSnapshot, end + 3));
-        //            _broker.DismissAllSessions(_textView);
-        //            DismissQuickInfo();
-        //        }
-        //    }
-        //    finally
-        //    {
-        //        _dte.UndoContext.Close();
-        //    }
-
-        //    return result;
-        //}
-
-        //private int ResolveEmptyLines(int end)
-        //{
-        //    if (end == -1 || _textView.TextSnapshot.GetLineNumberFromPosition(end) == _textView.TextSnapshot.LineCount)
-        //        return 0;
-
-        //    int emptyLines = 0;
-        //    int currentLine = _textView.TextSnapshot.GetLineFromPosition(end).LineNumber + 1;
-        //    while ((currentLine + emptyLines) < _textView.TextSnapshot.LineCount)
-        //    {
-        //        if (string.IsNullOrWhiteSpace(_textView.TextSnapshot.GetLineFromLineNumber(currentLine + emptyLines).GetText()))
-        //        {
-        //            emptyLines++;
-        //        }
-        //        else
-        //        {
-        //            break;
-        //        }
-        //    }
-        //    return emptyLines;
-        //}
 
         private int Process(bool selector, bool name, bool value)
         {
@@ -355,7 +256,6 @@ namespace MadsKristensen.EditorExtensions
                 _dte.UndoContext.Close();
             }
 
-            //SendKeys.Send("^( )");
             return VSConstants.S_OK;
         }
 
@@ -378,20 +278,6 @@ namespace MadsKristensen.EditorExtensions
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
         {
-            //if (WESettings.GetBoolean(WESettings.Keys.EnableSpeedTyping))
-            //{
-            //    for (int i = 0; i < cCmds; i++)
-            //    {
-            //        switch ((VSConstants.VSStd2KCmdID)prgCmds[i].cmdID)
-            //        {
-            //            case VSConstants.VSStd2KCmdID.RETURN:
-            //                prgCmds[i].cmdf = (uint)(OLECMDF.OLECMDF_ENABLED | OLECMDF.OLECMDF_SUPPORTED);
-            //                return VSConstants.S_OK;
-            //        }
-            //    }
-            //}
-
-            //return _nextCommandTarget.QueryStatus(ref pguidCmdGroup, cCmds, prgCmds, pCmdText);
             return (int)(Constants.OLECMDERR_E_NOTSUPPORTED);
         }
     }

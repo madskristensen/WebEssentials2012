@@ -153,8 +153,8 @@ namespace MadsKristensen.EditorExtensions
     {
         public ModernizrFormatDefinition()
         {
-            IsBold = true;
-            DisplayName = "CSS Modernizr selector";
+            this.IsBold = true;
+            this.DisplayName = "CSS Modernizr selector";
         }
     }
 }

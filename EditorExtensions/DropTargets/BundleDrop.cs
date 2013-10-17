@@ -17,16 +17,16 @@ namespace MadsKristensen.EditorExtensions
     {
         public IDropHandler GetAssociatedDropHandler(IWpfTextView view)
         {
-            return view.Properties.GetOrCreateSingletonProperty<BundleDropHandler>(() => new BundleDropHandler(view));
+            return view.Properties.GetOrCreateSingletonProperty(() => new BundleDropHandler(view));
         }
     }
 
     internal class BundleDropHandler : IDropHandler
     {
-        private IWpfTextView _view;
+        private readonly IWpfTextView _view;
         private readonly List<string> _allowedExtensions = new List<string> { ".css", ".less", ".js", ".coffee" };
         private string _draggedFilename;
-        private string _format = Environment.NewLine + "\t<file>/{0}</file>";
+        private readonly string _format = Environment.NewLine + "\t<file>/{0}</file>";
 
         public BundleDropHandler(IWpfTextView view)
         {
@@ -71,7 +71,7 @@ namespace MadsKristensen.EditorExtensions
             if (!string.IsNullOrEmpty(_draggedFilename))
             {
                 string fileExtension = Path.GetExtension(_draggedFilename).ToLowerInvariant();
-                if (this._allowedExtensions.Contains(fileExtension))
+                if (_allowedExtensions.Contains(fileExtension))
                 {
                     return true;
                 }

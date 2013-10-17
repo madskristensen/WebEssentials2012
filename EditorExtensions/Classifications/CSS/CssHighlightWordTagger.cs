@@ -50,7 +50,7 @@ namespace MadsKristensen.EditorExtensions
         NormalizedSnapshotSpanCollection _wordSpans { get; set; }
         SnapshotSpan? _currentWord { get; set; }
         SnapshotPoint _requestedPoint { get; set; }
-        object _syncLock = new object();
+        readonly object _syncLock = new object();
         private CssTree _tree;
 
         public CssHighlightWordTagger(ITextView view, ITextBuffer sourceBuffer, ITextSearchService textSearchService, ITextStructureNavigator textStructureNavigator)

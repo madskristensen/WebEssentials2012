@@ -10,12 +10,12 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class ColorConverterSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private ParseItem _item;
-        private ColorFormat _format;
+        private readonly ITrackingSpan _span;
+        private readonly ParseItem _item;
+        private readonly ColorFormat _format;
         private string _displayText;
-        private ColorModel _colorModel;
-        private static string[] _colorNames = Enum.GetNames(typeof(System.Drawing.KnownColor));
+        private readonly ColorModel _colorModel;
+        private static readonly string[] _colorNames = Enum.GetNames(typeof(System.Drawing.KnownColor));
 
         public ColorConverterSmartTagAction(ITrackingSpan span, ParseItem item, ColorModel colorModel, ColorFormat format)
         {

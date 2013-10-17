@@ -11,8 +11,8 @@ namespace MadsKristensen.EditorExtensions
     [Name("ModernizrProvider")]
     internal class ModernizrProvider : ICssSelectorFormatterHierarchyFilter
     {
-        private int _offset = 2;
-        public static string[] _classes = new string[] { "js", "flexbox", "flexbox-legacy", "canvas", "canvastext", "webgl", "touch", "geolocation", "postmessage", "websqldatabase", "indexeddb", "hashchange", "history", "draganddrop", "websockets", "rgba", "hsla", "multiplebgs", "backgroundsize", "borderimage", "borderradius", "boxshadow", "textshadow", "opacity", "cssanimations", "csscolumns", "cssgradients", "cssreflections", "csstransforms", "csstransforms3d", "csstransitions", "fontface", "generatedcontent", "video", "audio", "localstorage", "sessionstorage", "webworkers", "applicationcache", "svg", "inlinesvg", "smil", "svgclippaths" };
+        const int _offset = 2;
+        public static string[] _classes = new[] { "js", "flexbox", "flexbox-legacy", "canvas", "canvastext", "webgl", "touch", "geolocation", "postmessage", "websqldatabase", "indexeddb", "hashchange", "history", "draganddrop", "websockets", "rgba", "hsla", "multiplebgs", "backgroundsize", "borderimage", "borderradius", "boxshadow", "textshadow", "opacity", "cssanimations", "csscolumns", "cssgradients", "cssreflections", "csstransforms", "csstransforms3d", "csstransitions", "fontface", "generatedcontent", "video", "audio", "localstorage", "sessionstorage", "webworkers", "applicationcache", "svg", "inlinesvg", "smil", "svgclippaths" };
 
         public bool FilterSelectorTokens(IList<TokenItem> tokens)
         {

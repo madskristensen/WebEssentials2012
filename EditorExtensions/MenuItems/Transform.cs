@@ -1,8 +1,6 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Linq;
 using System.ComponentModel.Design;
-using System.Web;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
@@ -13,8 +11,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class TransformMenu
     {
-        private DTE2 _dte;
-        private OleMenuCommandService _mcs;
+        private readonly DTE2 _dte;
+        private readonly OleMenuCommandService _mcs;
         private delegate string Replacement(string original);
 
         public TransformMenu(DTE2 dte, OleMenuCommandService mcs)
@@ -25,16 +23,16 @@ namespace MadsKristensen.EditorExtensions
 
         public void SetupCommands()
         {
-            SetupCommand(PkgCmdIDList.upperCaseTransform, new Replacement(x => x.ToUpperInvariant()));
-            SetupCommand(PkgCmdIDList.lowerCaseTransform, new Replacement(x => x.ToLowerInvariant()));
-            SetupCommand(PkgCmdIDList.titleCaseTransform, new Replacement(x => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(x)));
-            SetupCommand(PkgCmdIDList.reverseTransform, new Replacement(x => new string(x.Reverse().ToArray())));
-            SetupCommand(PkgCmdIDList.normalizeTransform, new Replacement(x => RemoveDiacritics(x)));
-            SetupCommand(PkgCmdIDList.md5Transform, new Replacement(x => Hash(x, new MD5CryptoServiceProvider())));
-            SetupCommand(PkgCmdIDList.sha1Transform, new Replacement(x => Hash(x, new SHA1CryptoServiceProvider())));
-            SetupCommand(PkgCmdIDList.sha256Transform, new Replacement(x => Hash(x, new SHA256CryptoServiceProvider())));
-            SetupCommand(PkgCmdIDList.sha384Transform, new Replacement(x => Hash(x, new SHA384CryptoServiceProvider())));
-            SetupCommand(PkgCmdIDList.sha512Transform, new Replacement(x => Hash(x, new SHA512CryptoServiceProvider())));
+            SetupCommand(PkgCmdIDList.upperCaseTransform, x => x.ToUpperInvariant());
+            SetupCommand(PkgCmdIDList.lowerCaseTransform, x => x.ToLowerInvariant());
+            SetupCommand(PkgCmdIDList.titleCaseTransform, x => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(x));
+            SetupCommand(PkgCmdIDList.reverseTransform, x => new string(x.Reverse().ToArray()));
+            SetupCommand(PkgCmdIDList.normalizeTransform, RemoveDiacritics);
+            SetupCommand(PkgCmdIDList.md5Transform, x => Hash(x, new MD5CryptoServiceProvider()));
+            SetupCommand(PkgCmdIDList.sha1Transform, x => Hash(x, new SHA1CryptoServiceProvider()));
+            SetupCommand(PkgCmdIDList.sha256Transform, x => Hash(x, new SHA256CryptoServiceProvider()));
+            SetupCommand(PkgCmdIDList.sha384Transform, x => Hash(x, new SHA384CryptoServiceProvider()));
+            SetupCommand(PkgCmdIDList.sha512Transform, x => Hash(x, new SHA512CryptoServiceProvider()));
         }
 
         public static string RemoveDiacritics(string s)

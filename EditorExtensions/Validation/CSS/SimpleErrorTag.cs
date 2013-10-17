@@ -4,9 +4,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class SimpleErrorTag : ICssError
     {
-        private ParseItem _item;
-        private string _errorMessage;
-        private int _length;
+        private readonly ParseItem _item;
+        private readonly string _errorMessage;
+        private readonly int _length;
 
         public SimpleErrorTag(ParseItem item, string errorMessage, CssErrorFlags flags = CssErrorFlags.TaskListMessage | CssErrorFlags.UnderlinePurple)
         {

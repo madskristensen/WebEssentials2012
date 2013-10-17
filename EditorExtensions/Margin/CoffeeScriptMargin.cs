@@ -9,7 +9,7 @@ namespace MadsKristensen.EditorExtensions
     class CoffeeScriptMargin : MarginBase
     {
         public const string MarginName = "CoffeeScriptMargin";
-        private CoffeeScriptCompiler _compiler;
+        private readonly CoffeeScriptCompiler _compiler;
         private int _projectFileCount, _projectFileStep;
 
         public CoffeeScriptMargin(string contentType, string source, bool showMargin, ITextDocument document)
@@ -26,6 +26,9 @@ namespace MadsKristensen.EditorExtensions
 
         public void CompileProject(EnvDTE.Project project)
         {
+            if(project == null)
+                return;
+
             if (string.IsNullOrEmpty(project.FullName))
                 return;
 
@@ -36,7 +39,7 @@ namespace MadsKristensen.EditorExtensions
             {
                 string fullPath = project.Properties.Item("FullPath").Value.ToString();
 
-                if (project != null && !string.IsNullOrEmpty(fullPath))
+                if (!string.IsNullOrEmpty(fullPath))
                 {
                     string dir = Path.GetDirectoryName(fullPath);
                     var files = Directory.GetFiles(dir, "*.coffee", SearchOption.AllDirectories);
@@ -168,11 +171,3 @@ namespace MadsKristensen.EditorExtensions
         }
     }
 }
-
-//static class Iced
-//{
-//    [Export]
-//    [FileExtension(".iced")]
-//    [ContentType("CoffeeScript")]
-//    internal static FileExtensionToContentTypeDefinition IcedFileExtensionDefinition;
-//}

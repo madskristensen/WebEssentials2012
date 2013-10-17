@@ -24,9 +24,9 @@ namespace MadsKristensen.EditorExtensions
                 return ItemCheckResult.Continue;
 
             ICssSchemaInstance schema = CssEditorChecker.GetSchemaForItem(context, item);
-            var missingEntries = dec.GetMissingVendorSpecifics(schema);
+            var missingEntries = dec.GetMissingVendorSpecifics(schema).ToArray();
 
-            if (missingEntries.ToArray().Length > 0)
+            if (missingEntries.Length > 0)
             {
                 var missingPrefixes = missingEntries.Select(e => e.Substring(0, e.IndexOf('-', 1) + 1));
                 string error = string.Format(CultureInfo.InvariantCulture, Resources.BestPracticeAddMissingVendorSpecific, dec.PropertyName.Text, string.Join(", ", missingPrefixes));

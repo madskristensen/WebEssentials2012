@@ -9,10 +9,10 @@ namespace MadsKristensen.EditorExtensions
         public const string RobotsTxtKeyword = "robotstxt_keyword";
         public const string RobotsTxtComment = "robotstxt_comment";
 
-        [Export, Name(RobotsTxtClassificationTypes.RobotsTxtKeyword), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(RobotsTxtKeyword), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition RobotsTxtClassificationBold = null;
 
-        [Export, Name(RobotsTxtClassificationTypes.RobotsTxtComment), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(RobotsTxtComment), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition RobotsTxtClassificationHeader = null;
     }
 

@@ -12,9 +12,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class JsHintRunner : IDisposable
     {
-        private ErrorListProvider _provider;
-        private static Dictionary<string, ErrorListProvider> _providers = new Dictionary<string, ErrorListProvider>();
-        private string _fileName;
+        private readonly ErrorListProvider _provider;
+        private static readonly Dictionary<string, ErrorListProvider> _providers = new Dictionary<string, ErrorListProvider>();
+        private readonly string _fileName;
         private bool _isDisposed;
 
         static JsHintRunner()

@@ -12,9 +12,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class ImageQuickInfo : IQuickInfoSource
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private CssTree _tree;
-        private static List<string> _imageExtensions = new List<string>() { ".png", ".jpg", "gif", ".jpeg", ".bmp", ".tif", ".tiff" };
 
         public ImageQuickInfo(ITextBuffer subjectBuffer)
         {
@@ -60,7 +59,7 @@ namespace MadsKristensen.EditorExtensions
         /// </summary>
         public bool EnsureTreeInitialized()
         {
-            if (_tree == null)// && WebEditor.GetHost(CssContentTypeDefinition.CssContentType) != null)
+            if (_tree == null)
             {
                 try
                 {
@@ -83,8 +82,6 @@ namespace MadsKristensen.EditorExtensions
                     return text;
 
                 string imageUrl = text.Trim(new[] { '\'', '"' });
-                //if (!_imageExtensions.Contains(Path.GetExtension(imageUrl)))
-                //    return null;
                 
                 string filePath = string.Empty;
 

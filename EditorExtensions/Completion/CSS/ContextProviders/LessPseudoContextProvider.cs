@@ -17,7 +17,7 @@ namespace MadsKristensen.EditorExtensions
         {
             get
             {
-                return new Type[] 
+                return new[] 
                 { 
                     typeof(PseudoClassFunctionSelector), 
                     typeof(PseudoClassSelector), 

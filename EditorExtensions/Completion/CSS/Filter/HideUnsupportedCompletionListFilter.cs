@@ -12,7 +12,7 @@ namespace MadsKristensen.EditorExtensions
     {
         public ICssSchemaFilter CreateFilter(ICssSchemaManager schemaManager, ITextBuffer textBuffer)
         {
-            return textBuffer.Properties.GetOrCreateSingletonProperty<HideUnsupportedSchemaFilter>(() => new HideUnsupportedSchemaFilter());
+            return textBuffer.Properties.GetOrCreateSingletonProperty(() => new HideUnsupportedSchemaFilter());
         }
     }
 

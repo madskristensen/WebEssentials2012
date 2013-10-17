@@ -10,7 +10,7 @@ namespace MadsKristensen.EditorExtensions
     /// </summary>
     internal class FontFamilyCompletionListEntry : ICssCompletionListEntry
     {
-        private string _name;
+        private readonly string _name;
 
         public FontFamilyCompletionListEntry(string name)
         {
@@ -37,7 +37,7 @@ namespace MadsKristensen.EditorExtensions
             return string.Empty;
         }
 
-        public string GetVersionedAttribute(string name, System.Version version)
+        public string GetVersionedAttribute(string name, Version version)
         {
             return string.Empty;
         }

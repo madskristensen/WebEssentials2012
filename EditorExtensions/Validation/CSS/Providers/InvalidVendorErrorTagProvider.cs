@@ -12,13 +12,6 @@ namespace MadsKristensen.EditorExtensions
     [Order(After = "Ie10PrefixErrorTagProvider")]
     internal class InvalidVendorDeclarationErrorTagProvider : ICssItemChecker
     {
-        //private HashSet<string> _deprecated = new HashSet<string>()
-        //{
-        //    "-moz-opacity",
-        //    "-moz-outline",
-        //    "-moz-outline-style",
-        //};
-
         public ItemCheckResult CheckItem(ParseItem item, ICssCheckerContext context)
         {
             if (!WESettings.GetBoolean(WESettings.Keys.ValidateVendorSpecifics))
@@ -32,12 +25,6 @@ namespace MadsKristensen.EditorExtensions
             ICssSchemaInstance rootSchema = CssSchemaManager.SchemaManager.GetSchemaRoot(null);
             ICssSchemaInstance schema = CssSchemaManager.SchemaManager.GetSchemaForItem(rootSchema, item);
 
-            //if (_deprecated.Contains(dec.PropertyName.Text))
-            //{
-            //    string message = string.Format(Resources.ValidationDeprecatedVendorDeclaration, dec.PropertyName.Text);
-            //    context.AddError(new SimpleErrorTag(dec.PropertyName, message));
-            //    return ItemCheckResult.CancelCurrentItem;
-            //}
              if (schema.GetProperty(dec.PropertyName.Text) == null)
             {
                 string message = string.Format(Resources.ValidationVendorDeclarations, dec.PropertyName.Text);

@@ -28,9 +28,9 @@ namespace MadsKristensen.EditorExtensions
 
     internal sealed class JavaScriptArrayOutliningTagger : ITagger<IOutliningRegionTag>
     {
-        string startHide = "[";     //the characters that start the outlining region
-        string endHide = "]";       //the characters that end the outlining region
-        string ellipsis = "...";    //the characters that are displayed when the region is collapsed
+        const string startHide = "["; //the characters that start the outlining region
+        const string endHide = "]"; //the characters that end the outlining region
+        const string ellipsis = "..."; //the characters that are displayed when the region is collapsed
         ITextBuffer buffer;
         ITextSnapshot snapshot;
         List<Region> regions;
@@ -82,7 +82,7 @@ namespace MadsKristensen.EditorExtensions
             if (e.After != buffer.CurrentSnapshot)
                 return;
 
-            Task.Run(() => this.ReParse());
+            Task.Run(() => ReParse());
         }
 
         void ReParse()
@@ -227,18 +227,4 @@ namespace MadsKristensen.EditorExtensions
         }
 
     }
-
-    //class PartialRegion
-    //{
-    //    public int StartLine { get; set; }
-    //    public int StartOffset { get; set; }
-    //    public int Level { get; set; }
-    //    public PartialRegion PartialParent { get; set; }
-    //}
-
-    //class Region : PartialRegion
-    //{
-    //    public int EndLine { get; set; }
-    //}
-
 }

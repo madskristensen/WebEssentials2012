@@ -15,7 +15,7 @@ namespace IntraTextAdornmentSample
 {
     internal sealed class ColorTagger : ITagger<ColorTag>
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private CssTree _tree;
 
         internal ColorTagger(ITextBuffer buffer)

@@ -45,7 +45,7 @@ namespace MadsKristensen.EditorExtensions
 
             if (dupe != null)
             {
-                int length = GetSelectorLength(rule);
+
                 int lineNo = FindLineNumber(dupe);
 
                 string errorMessage = string.Format(CultureInfo.InvariantCulture, Resources.BestPracticeDuplicateSelectors, lineNo);
@@ -67,12 +67,6 @@ namespace MadsKristensen.EditorExtensions
         {
             var selectorsText = rule.Selectors.OrderBy(s => s.Text.Trim(',')).Select(s => s.Text.Trim(','));
             return string.Concat(selectorsText);
-        }
-
-        private static int GetSelectorLength(RuleSet rule)
-        {
-            var selector = rule.Selectors.Last();
-            return selector.AfterEnd - rule.Start;
         }
 
         public IEnumerable<Type> ItemTypes

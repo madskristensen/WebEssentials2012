@@ -17,16 +17,16 @@ namespace MadsKristensen.EditorExtensions
     {
         public IDropHandler GetAssociatedDropHandler(IWpfTextView view)
         {
-            return view.Properties.GetOrCreateSingletonProperty<TypeScriptDropHandler>(() => new TypeScriptDropHandler(view));
+            return view.Properties.GetOrCreateSingletonProperty(() => new TypeScriptDropHandler(view));
         }
     }
 
     internal class TypeScriptDropHandler : IDropHandler
     {
-        IWpfTextView _view;
+        readonly IWpfTextView _view;
         private readonly List<string> _imageExtensions = new List<string> { ".ts", ".js" };
         private string _imageFilename;
-        string _background = "/// <reference path=\"{0}\" />";
+        const string _background = "/// <reference path=\"{0}\" />";
 
         public TypeScriptDropHandler(IWpfTextView view)
         {

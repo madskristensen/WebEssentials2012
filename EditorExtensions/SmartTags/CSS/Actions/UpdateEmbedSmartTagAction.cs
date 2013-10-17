@@ -9,9 +9,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class UpdateEmbedSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private UrlItem _url;
-        private string _path;
+        private readonly ITrackingSpan _span;
+        private readonly UrlItem _url;
+        private readonly string _path;
 
         public UpdateEmbedSmartTagAction(ITrackingSpan span, UrlItem url, string path)
         {
@@ -55,7 +55,6 @@ namespace MadsKristensen.EditorExtensions
         {
             EditorExtensionsPackage.DTE.UndoContext.Open(DisplayText);
             Declaration dec = _url.FindType<Declaration>();
-            string text = dec.Text;
 
             _span.TextBuffer.Replace(_span.GetSpan(snapshot), dataUri);
 

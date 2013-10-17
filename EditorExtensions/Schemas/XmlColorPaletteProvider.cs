@@ -45,7 +45,7 @@ namespace MadsKristensen.EditorExtensions
 
                 File.Copy(path, GetSolutionFilePath(), true);
 
-                Solution2 solution = EditorExtensionsPackage.DTE.Solution as Solution2;
+                Solution2 solution = (Solution2)EditorExtensionsPackage.DTE.Solution;
                 Project project = solution.Projects
                                     .OfType<Project>()
                                     .FirstOrDefault(p => p.Name.Equals(Settings._solutionFolder, StringComparison.OrdinalIgnoreCase));

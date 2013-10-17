@@ -22,7 +22,7 @@ namespace MadsKristensen.EditorExtensions
         {
             var textView = EditorAdaptersFactoryService.GetWpfTextView(textViewAdapter);
 
-            textView.Properties.GetOrCreateSingletonProperty<ZenCoding>(() => new ZenCoding(textViewAdapter, textView, CompletionBroker));
+            textView.Properties.GetOrCreateSingletonProperty(() => new ZenCoding(textViewAdapter, textView, CompletionBroker));
         }
     }
 }

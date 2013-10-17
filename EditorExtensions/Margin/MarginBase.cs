@@ -17,19 +17,19 @@ namespace MadsKristensen.EditorExtensions
     {
         private bool _isDisposed = false;
         private IWpfTextViewHost _viewHost;
-        private string _marginName;
+        private readonly string _marginName;
         protected string _settingsKey;
-        private bool _showMargin;
+        private readonly bool _showMargin;
         protected bool _isFirstRun = true;
-        private Dispatcher _dispatcher;
-        private ErrorListProvider _provider;
+        private readonly Dispatcher _dispatcher;
+        private readonly ErrorListProvider _provider;
 
         public MarginBase()
         {
             _dispatcher = Dispatcher.CurrentDispatcher;
         }
 
-        public MarginBase(string source, string name, string contentType, bool showMargin, ITextDocument document)
+        protected MarginBase(string source, string name, string contentType, bool showMargin, ITextDocument document)
         {
             Document = document;
             _marginName = name;

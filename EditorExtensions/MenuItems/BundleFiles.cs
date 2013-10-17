@@ -25,7 +25,7 @@ namespace MadsKristensen.EditorExtensions
     internal class BundleFilesMenu : IWpfTextViewCreationListener
     {
         private static DTE2 _dte;
-        private OleMenuCommandService _mcs;
+        private readonly OleMenuCommandService _mcs;
         public const string _ext = ".bundle";
 
         public BundleFilesMenu()
@@ -57,10 +57,7 @@ namespace MadsKristensen.EditorExtensions
             {
                 string file = e.FilePath.EndsWith(_ext) ? null : e.FilePath;
 
-                System.Threading.Tasks.Task.Run(() =>
-                {
-                    UpdateBundles(file, file == null);
-                });
+                System.Threading.Tasks.Task.Run(() => UpdateBundles(file, file == null));
             }
         }
 
@@ -88,11 +85,6 @@ namespace MadsKristensen.EditorExtensions
 
             if (string.IsNullOrEmpty(dir))
                 return;
-
-            //if (dir.Contains("."))
-            //{
-            //    dir = Path.GetDirectoryName(dir);
-            //}
 
             foreach (string file in Directory.GetFiles(dir, "*" + _ext, SearchOption.AllDirectories))
             {
@@ -165,7 +157,6 @@ namespace MadsKristensen.EditorExtensions
         private void BeforeQueryStatus(object sender, string extension)
         {
             OleMenuCommand menuCommand = sender as OleMenuCommand;
-            //_selectedItems = ProjectHelpers.GetSelectedItems().Where(p => Path.GetExtension(p.FileNames[1]) == extension);
 
             menuCommand.Enabled = GetSelectedItems(extension).Count() > 1;
         }
@@ -175,22 +166,8 @@ namespace MadsKristensen.EditorExtensions
             return ProjectHelpers.GetSelectedItems().Where(p => Path.GetExtension(p.FileNames[1]) == extension);
         }
 
-        //private IEnumerable<string> GetSelectedFilePaths(string extension)
-        //{
-        //    var raw = ProjectHelpers.GetSelectedItems().Where(p => Path.GetExtension(p.Properties.Item("FullPath").ToString()) == extension);
-
-        //    foreach (string file in raw)
-        //    {
-        //        //if (!file.EndsWith(".min" + extension))
-        //        //{
-        //        yield return file;
-        //        //}
-        //    }
-        //}
-
         private void CreateBundlefile(string extension)
         {
-            //var selectedPaths = GetSelectedFilePaths(extension);
             StringBuilder sb = new StringBuilder();
             string firstFile = null;
             var items = GetSelectedItems(extension);
@@ -340,10 +317,6 @@ namespace MadsKristensen.EditorExtensions
 
             foreach (string file in files.Keys)
             {
-                //if (extension.Equals(".css", StringComparison.OrdinalIgnoreCase))
-                //{
-                //    sb.AppendLine("/*#source " + files[file] + " */");
-                //}
                 if (extension.Equals(".js", StringComparison.OrdinalIgnoreCase) && WESettings.GetBoolean(WESettings.Keys.GenerateJavaScriptSourceMaps))
                 {
                     sb.AppendLine("///#source 1 1 " + files[file]);

@@ -10,8 +10,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class EmbedSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private UrlItem _url;
+        private readonly ITrackingSpan _span;
+        private readonly UrlItem _url;
 
         public EmbedSmartTagAction(ITrackingSpan span, UrlItem url)
         {
@@ -76,7 +76,7 @@ namespace MadsKristensen.EditorExtensions
                 RuleBlock rule = _url.FindType<RuleBlock>();
                 string text = dec.Text;
 
-                if (dec != null && rule != null)
+                if (rule != null)
                 {
                     Declaration match = rule.Declarations.FirstOrDefault(d => d.PropertyName != null && d.PropertyName.Text == "*" + dec.PropertyName.Text);
                     if (!text.StartsWith("*") && match == null)

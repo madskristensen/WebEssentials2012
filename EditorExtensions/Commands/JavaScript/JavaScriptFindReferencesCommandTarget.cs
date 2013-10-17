@@ -10,8 +10,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class JavaScriptFindReferences : CommandTargetBase
     {
-        private DTE2 _dte;
-        private ITextStructureNavigator _navigator;
+        private readonly DTE2 _dte;
+        private readonly ITextStructureNavigator _navigator;
 
         public JavaScriptFindReferences(IVsTextView adapter, IWpfTextView textView, ITextStructureNavigatorSelectorService navigator)
             : base(adapter, textView, typeof(VSConstants.VSStd97CmdID).GUID, (uint)VSConstants.VSStd97CmdID.FindReferences)
