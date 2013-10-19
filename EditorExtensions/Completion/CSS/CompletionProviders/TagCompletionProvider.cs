@@ -9,7 +9,7 @@ namespace MadsKristensen.EditorExtensions
     [Name("TagCompletionProvider")]
     internal class TagCompletionProvider : ICssCompletionListProvider
     {
-        private static IEnumerable<ICssCompletionListEntry> _entryCache = GetListEntriesCache();
+        private static readonly IEnumerable<ICssCompletionListEntry> _entryCache = GetListEntriesCache();
 
         public CssCompletionContextType ContextType
         {

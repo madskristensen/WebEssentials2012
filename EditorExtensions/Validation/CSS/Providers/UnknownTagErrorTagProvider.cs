@@ -11,7 +11,8 @@ namespace MadsKristensen.EditorExtensions
     [Order(After = "Default Declaration")]
     internal class UnknownTagErrorTagProvider : ICssItemChecker
     {
-        private HashSet<string> _cache = new HashSet<string>(){
+        private readonly HashSet<string> _cache = new HashSet<string>
+            {
             "*",
             "a",
             "abbr",

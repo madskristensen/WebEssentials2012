@@ -11,15 +11,11 @@ namespace MadsKristensen.EditorExtensions
     [Name("UrlPickerCompletionContextProvider")]
     internal class UrlPickerCompletionContextProvider : ICssCompletionContextProvider
     {
-        public UrlPickerCompletionContextProvider()
-        {
-        }
-
         public IEnumerable<Type> ItemTypes
         {
             get
             {
-                return new Type[] { typeof(UrlItem), };
+                return new[] { typeof(UrlItem), };
             }
         }
 

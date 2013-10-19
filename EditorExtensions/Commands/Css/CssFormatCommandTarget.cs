@@ -7,7 +7,7 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class CssFormatProperties : IOleCommandTarget
     {
-        private ITextView _textView;
+        private readonly ITextView _textView;
 
         public CssFormatProperties(ITextView textView)
         {

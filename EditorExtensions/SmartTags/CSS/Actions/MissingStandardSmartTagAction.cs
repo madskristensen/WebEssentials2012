@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Media.Imaging;
 using Microsoft.CSS.Core;
-using Microsoft.CSS.Editor;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.Web.Editor;
@@ -12,10 +11,10 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class MissingStandardSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private Declaration _declaration;
-        private string _standardName;
-        private ITextView _view;
+        private readonly ITrackingSpan _span;
+        private readonly Declaration _declaration;
+        private readonly string _standardName;
+        private readonly ITextView _view;
 
         public MissingStandardSmartTagAction(ITrackingSpan span, Declaration declaration, string standardName, ITextView view)
         {

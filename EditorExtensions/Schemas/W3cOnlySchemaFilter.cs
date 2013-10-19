@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Microsoft.CSS.Editor;
-using Microsoft.Css.Editor;
-using Microsoft.CSS.Core;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
 using System.IO;
@@ -17,7 +11,7 @@ namespace MadsKristensen.EditorExtensions.Schemas
     [Order(Before = "User Schemas")]
     class W3cOnlySchemaFilter : ICssSchemaModuleProvider
     {
-        private byte[] _emptyModule = Encoding.UTF8.GetBytes("<CssModule></CssModule>");
+        private readonly byte[] _emptyModule = Encoding.UTF8.GetBytes("<CssModule></CssModule>");
         public Stream GetModuleStream(string name)
         {
             if (WESettings.GetBoolean(WESettings.Keys.OnlyW3cAllowed) && name.Contains("vendor"))

@@ -10,7 +10,7 @@ namespace MadsKristensen.EditorExtensions
     {
         private static int _fontSize;
         private static ColorModel _backgroundColor;
-        private static object _syncRoot = new object();
+        private static readonly object _syncRoot = new object();
 
         // TODO: Compensate for the current line highlighting
         public static ColorModel BackgroundColor

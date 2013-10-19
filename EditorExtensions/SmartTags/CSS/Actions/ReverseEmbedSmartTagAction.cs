@@ -11,8 +11,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class ReverseEmbedSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private UrlItem _url;
+        private readonly ITrackingSpan _span;
+        private readonly UrlItem _url;
 
         public ReverseEmbedSmartTagAction(ITrackingSpan span, UrlItem url)
         {

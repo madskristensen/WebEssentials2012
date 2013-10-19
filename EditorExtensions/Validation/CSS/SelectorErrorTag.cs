@@ -5,8 +5,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class SelectorErrorTag : ICssError
     {
-        private SortedRangeList<Selector> _range;
-        private string _errorMessage;
+        private readonly SortedRangeList<Selector> _range;
+        private readonly string _errorMessage;
 
         public SelectorErrorTag(SortedRangeList<Selector> range, string errorMessage)
         {

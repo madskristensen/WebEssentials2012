@@ -15,8 +15,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class CssExtractToFile : CommandTargetBase
     {
-        private DTE2 _dte;
-        private List<string> _possible = new List<string>() { ".CSS", ".LESS", ".JS"};
+        private readonly DTE2 _dte;
+        private readonly List<string> _possible = new List<string>() { ".CSS", ".LESS", ".JS"};
 
         public CssExtractToFile(IVsTextView adapter, IWpfTextView textView)
             : base(adapter, textView, GuidList.guidExtractCmdSet, PkgCmdIDList.ExtractSelection)
@@ -79,7 +79,6 @@ namespace MadsKristensen.EditorExtensions
 
             if (projection != null)
             {
-                int position = view.Caret.Position.BufferPosition.Position;
                 var snapshotPoint = view.Caret.Position.BufferPosition;
 
                 var buffers = projection.SourceBuffers.Where(s =>

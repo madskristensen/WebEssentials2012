@@ -41,10 +41,7 @@ namespace MadsKristensen.EditorExtensions
 
                 if (!File.Exists(bundleFile) && File.Exists(minFile) && EditorExtensionsPackage.DTE.Solution.FindProjectItem(minFile) != null)
                 {
-                    Task.Run(() =>
-                    {
-                        Minify(e.FilePath, minFile, false);
-                    });
+                    Task.Run(() => Minify(e.FilePath, minFile, false));
                 }
             }
         }

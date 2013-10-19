@@ -55,10 +55,6 @@ namespace MadsKristensen.EditorExtensions
         {
             switch (typedCharacter)
             {
-                //case '\"':
-                //case '\'':
-                //    return typedCharacter;
-
                 case '[':
                     return ']';
 

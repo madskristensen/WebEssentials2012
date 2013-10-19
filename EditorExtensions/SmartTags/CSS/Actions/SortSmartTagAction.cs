@@ -9,9 +9,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class SortSmartTagAction : CssSmartTagActionBase
     {
-        private RuleSet _rule;
-        private ITrackingSpan _span;
-        private ITextView _view;
+        private readonly RuleSet _rule;
+        private readonly ITrackingSpan _span;
+        private readonly ITextView _view;
 
         public SortSmartTagAction(RuleSet rule, ITrackingSpan span, ITextView view)
         {
@@ -32,80 +32,25 @@ namespace MadsKristensen.EditorExtensions
 
         public override void Invoke()
         {
-            Span ruleSpan = new Span(_rule.Start, _rule.Length);
-
             Sorter sorter = new Sorter();
-            string result = null;
 
             if (_view.TextBuffer.ContentType.IsOfType("LESS"))
             {
-                result = sorter.SortLess(_rule.Text);
+                sorter.SortLess(_rule.Text);
             }
             else
             {
-                result = sorter.SortStyleSheet(_rule.Text);
+                sorter.SortStyleSheet(_rule.Text);
             }
-            //var declarations = _rule.Block.Declarations.OrderBy(d => d.PropertyName, new DeclarationComparer());
+
             var position = _view.Caret.Position.BufferPosition.Position;
 
             EditorExtensionsPackage.DTE.UndoContext.Open(DisplayText);
 
-            _span.TextBuffer.Replace(ruleSpan, result);// string.Concat(declarations.Select(d => d.Text)));
             _view.Caret.MoveTo(new SnapshotPoint(_span.TextBuffer.CurrentSnapshot, position));
             EditorExtensionsPackage.ExecuteCommand("Edit.FormatSelection");
 
             EditorExtensionsPackage.DTE.UndoContext.Close();
         }
     }
-
-
-    //public class DeclarationComparer : IComparer<ParseItem>
-    //{
-    //    public int Compare(ParseItem x, ParseItem y)
-    //    {
-    //        if (x == null || y == null)
-    //            return 0;
-
-    //        if (!x.Text.StartsWith("-") && !x.Text.StartsWith("*") && !x.Text.StartsWith("_") &&
-    //            !y.Text.StartsWith("-") && !y.Text.StartsWith("*") && !y.Text.StartsWith("_"))
-    //        {
-    //            // Replace hyphens because of vendor specific values such as -ms-linear-gradient()
-    //            return x.Text.CompareTo(y.Text);
-    //        }            
-
-    //        string xText = GetStandardName(x.Text);
-    //        string yText = GetStandardName(y.Text);
-
-    //        if (x.Text.StartsWith("-") && y.Text.StartsWith("-"))
-    //        {
-    //            return xText.CompareTo(yText);
-    //        }
-
-    //        if (x.Text.StartsWith("-") && !y.Text.StartsWith("-"))
-    //        {
-    //            if (xText == yText)
-    //                return -1;
-    //        }
-
-    //        if (!x.Text.StartsWith("-") && y.Text.StartsWith("-"))
-    //        {
-    //            if (xText == yText)
-    //                return 1;
-    //        }
-
-    //        return xText.CompareTo(yText);
-    //    }
-
-    //    public string GetStandardName(string name)
-    //    {
-    //        name = name.Trim('*', '_');
-    //        if (name.Length > 0 && name[0] == '-')
-    //        {
-    //            int index = name.IndexOf('-', 1) + 1;
-    //            name = index > -1 ? name.Substring(index) : name;
-    //        }
-
-    //        return name;
-    //    }
-    //}
 }

@@ -24,10 +24,10 @@ namespace MadsKristensen.EditorExtensions
 
     internal class StylesheetDropHandler : IDropHandler
     {
-        IWpfTextView _view;
+        readonly IWpfTextView _view;
         private readonly List<string> _imageExtensions = new List<string> { ".css", ".less", ".sass", ".scss" };
         private string _imageFilename;
-        string _background = "@import url('{0}');";
+        const string _background = "@import url('{0}');";
 
         public StylesheetDropHandler(IWpfTextView view)
         {

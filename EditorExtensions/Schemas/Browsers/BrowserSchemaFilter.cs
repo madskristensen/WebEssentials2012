@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.Utilities;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace MadsKristensen.EditorExtensions.Schemas

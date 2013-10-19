@@ -8,10 +8,10 @@ namespace MadsKristensen.EditorExtensions
 {
     public class TypeThroughController : IIntellisenseController
     {
-        ITextBuffer _textBuffer;
-        ITextView _textView;
+        readonly ITextBuffer _textBuffer;
+        readonly ITextView _textView;
 
-        List<ProvisionalText> _provisionalTexts = new List<ProvisionalText>();
+        readonly List<ProvisionalText> _provisionalTexts = new List<ProvisionalText>();
         char _typedChar = '\0';
         bool _processing = false;
         int _caretPosition = 0;
@@ -101,16 +101,6 @@ namespace MadsKristensen.EditorExtensions
         {
             switch (typedCharacter)
             {
-                //case '\"':
-                //case '\'':
-                //    return typedCharacter;
-
-                //case '[':
-                //    return ']';
-
-                //case '(':
-                //    return ')';
-
                 case '{':
                 case '}':
                     return '}';
@@ -135,8 +125,6 @@ namespace MadsKristensen.EditorExtensions
             // current caret position may be beyond projection boundary like when
             // typing at the end of onclick="return foo(".
 
-            //var settings = WebEditor.GetSettings(_textBuffer.ContentType.TypeName);
-            //if (settings.GetBoolean(CommonSettings.InsertMatchingBracesKey))
             if (WESettings.GetBoolean(WESettings.Keys.AutoCloseCurlyBraces))
             {
                 char completionCharacter = GetCompletionCharacter(typedCharacter);
@@ -166,7 +154,7 @@ namespace MadsKristensen.EditorExtensions
                             _textView.Caret.MoveTo(new SnapshotPoint(_textView.TextBuffer.CurrentSnapshot, viewCaretPosition));
 
                             var provisionalText = new ProvisionalText(_textView, new Span(viewCaretPosition - 1, 2));
-                            provisionalText.OnClose += new System.EventHandler<System.EventArgs>(OnCloseProvisionalText);
+                            provisionalText.OnClose += OnCloseProvisionalText;
 
                             _provisionalTexts.Add(provisionalText);
                         }

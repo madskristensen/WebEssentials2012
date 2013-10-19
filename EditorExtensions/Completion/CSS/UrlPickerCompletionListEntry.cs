@@ -7,7 +7,7 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class UrlPickerCompletionListEntry : ICssCompletionListEntry
     {
-        private string _name;
+        private readonly string _name;
 
         public UrlPickerCompletionListEntry(string name)
         {

@@ -7,7 +7,7 @@ namespace MadsKristensen.EditorExtensions
 {
     public static class JsDocComments
     {
-        private static string _fileName = "JsDocComments.js";
+        const string _fileName = "JsDocComments.js";
 
         public static void Register()
         {

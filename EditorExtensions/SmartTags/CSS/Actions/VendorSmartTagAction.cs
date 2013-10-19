@@ -10,9 +10,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class VendorSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private Declaration _declaration;
-        private IEnumerable<string> _prefixes;
+        private readonly ITrackingSpan _span;
+        private readonly Declaration _declaration;
+        private readonly IEnumerable<string> _prefixes;
         private ITextView _view;
 
         public VendorSmartTagAction(ITrackingSpan span, Declaration declaration, IEnumerable<string> prefixes, ITextView view)

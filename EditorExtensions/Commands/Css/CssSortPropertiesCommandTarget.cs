@@ -13,7 +13,6 @@ namespace MadsKristensen.EditorExtensions
     {
         private DTE2 _dte;
         private readonly string[] _supported = new[] { "CSS", "LESS" };
-        //private static uint[] _commandIds = new uint[] { PkgCmdIDList.sortCssProperties };
 
         public CssSortProperties(IVsTextView adapter, IWpfTextView textView)
             : base(adapter, textView, GuidList.guidCssCmdSet, PkgCmdIDList.sortCssProperties)

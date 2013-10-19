@@ -50,9 +50,7 @@ namespace MadsKristensen.EditorExtensions
 
         private void UpdateBundleFiles()
         {
-            //Logger.Log("Updating bundles...");
             BundleFilesMenu.UpdateBundles(null, true);
-            //Logger.Log("Bundles updated");
         }
 
         private void BuildLess()
@@ -91,7 +89,6 @@ namespace MadsKristensen.EditorExtensions
 
         private IEnumerable<string> GetFiles()
         {
-            //Project project = ProjectHelpers.GetActiveProject();
 
             foreach (Project project in _dte.Solution.Projects)
             {
@@ -126,8 +123,6 @@ namespace MadsKristensen.EditorExtensions
                     }
                 }
             }
-
-            yield break;
         }
     }
 }

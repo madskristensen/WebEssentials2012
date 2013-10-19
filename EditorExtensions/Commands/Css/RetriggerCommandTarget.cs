@@ -15,8 +15,8 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class RetriggerTarget : IOleCommandTarget
     {
-        private ITextView _textView;
-        private IOleCommandTarget _nextCommandTarget;
+        private readonly ITextView _textView;
+        private readonly IOleCommandTarget _nextCommandTarget;
         private ICompletionBroker _broker;
 
         public RetriggerTarget(IVsTextView adapter, ITextView textView, ICompletionBroker broker)

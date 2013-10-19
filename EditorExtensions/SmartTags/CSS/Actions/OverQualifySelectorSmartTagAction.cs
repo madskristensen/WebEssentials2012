@@ -7,9 +7,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class OverQualifySelectorSmartTagAction : CssSmartTagActionBase
     {
-        private Selector _selector;
-        private ITrackingSpan _span;
-        private int _index;
+        private readonly Selector _selector;
+        private readonly ITrackingSpan _span;
+        private readonly int _index;
 
         public OverQualifySelectorSmartTagAction(Selector sel, ITrackingSpan span, int index)
         {

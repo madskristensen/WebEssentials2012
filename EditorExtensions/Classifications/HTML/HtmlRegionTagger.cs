@@ -39,7 +39,7 @@ namespace MadsKristensen.EditorExtensions
             this.buffer.Changed += BufferChanged;
 
             Dispatcher.CurrentDispatcher.BeginInvoke(
-                    new Action(() => ReParse()), DispatcherPriority.ApplicationIdle, null);
+                    new Action(ReParse), DispatcherPriority.ApplicationIdle, null);
 
             this.buffer.Changed += BufferChanged;
         }
@@ -84,7 +84,7 @@ namespace MadsKristensen.EditorExtensions
                 return;
 
             Dispatcher.CurrentDispatcher.BeginInvoke(
-                    new Action(() => ReParse()), DispatcherPriority.ApplicationIdle, null);
+                    new Action(ReParse), DispatcherPriority.ApplicationIdle, null);
         }
 
         void ReParse()

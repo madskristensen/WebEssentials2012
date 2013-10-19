@@ -18,16 +18,16 @@ namespace MadsKristensen.EditorExtensions
     {
         public IDropHandler GetAssociatedDropHandler(IWpfTextView view)
         {
-            return view.Properties.GetOrCreateSingletonProperty<ImageDropHandler>(() => new ImageDropHandler(view));
+            return view.Properties.GetOrCreateSingletonProperty(() => new ImageDropHandler(view));
         }
     }
 
     internal class ImageDropHandler : IDropHandler
     {
-        IWpfTextView _view;
+        readonly IWpfTextView _view;
         private readonly List<string> _imageExtensions = new List<string> { ".jpg", ".jpeg", ".bmp", ".png", ".gif", ".svg", ".tif", ".tiff" };
         private string _imageFilename;
-        string _background = "background-image: url({0});";
+        const string _background = "background-image: url({0});";
 
         public ImageDropHandler(IWpfTextView view)
         {

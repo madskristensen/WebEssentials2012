@@ -44,7 +44,7 @@ namespace MadsKristensen.EditorExtensions
         SnapshotPoint? CurrentChar { get; set; }
         VendorTaggerProvider Provider { get; set; }
         readonly IClassifier _classifier;
-        private VendorClassifier _vendorClassifier;
+        private readonly VendorClassifier _vendorClassifier;
         private bool _pendingUpdate = false;
 
         internal VendorTagger(ITextView view, ITextBuffer buffer, VendorTaggerProvider provider)
@@ -87,7 +87,7 @@ namespace MadsKristensen.EditorExtensions
                 }
 
                 Dispatcher.CurrentDispatcher.BeginInvoke(
-                    new Action(() => Update()), DispatcherPriority.ContextIdle);
+                    new Action(Update), DispatcherPriority.ContextIdle);
             }
         }
 
@@ -149,7 +149,7 @@ namespace MadsKristensen.EditorExtensions
     {
         public HighlightWordFormatDefinition()
         {
-            this.DisplayName = "CSS Property Value Highlight";
+            DisplayName = "CSS Property Value Highlight";
         }
 
     }

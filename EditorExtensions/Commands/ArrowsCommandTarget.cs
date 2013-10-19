@@ -31,8 +31,8 @@ namespace MadsKristensen.EditorExtensions
 
     class NumberTarget : IOleCommandTarget
     {
-        private ITextView _textView;
-        private IOleCommandTarget _nextCommandTarget;
+        private readonly ITextView _textView;
+        private readonly IOleCommandTarget _nextCommandTarget;
         private CssTree _tree;
 
         public NumberTarget(IVsTextView adapter, ITextView textView)

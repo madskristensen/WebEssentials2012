@@ -14,11 +14,11 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class ZenCoding : CommandTargetBase
     {
-        private ICompletionBroker _broker;
+        private readonly ICompletionBroker _broker;
         private ITrackingSpan _trackingSpan;
 
-        private static Regex _bracket = new Regex(@"<([a-z0-9]*)\b[^>]*>([^<]*)</\1>", RegexOptions.IgnoreCase);
-        private static Regex _quotes = new Regex("(=\"()\")", RegexOptions.IgnoreCase);
+        private static readonly Regex _bracket = new Regex(@"<([a-z0-9]*)\b[^>]*>([^<]*)</\1>", RegexOptions.IgnoreCase);
+        private static readonly Regex _quotes = new Regex("(=\"()\")", RegexOptions.IgnoreCase);
 
         public ZenCoding(IVsTextView adapter, IWpfTextView textView, ICompletionBroker broker)
             : base(adapter, textView, typeof(VSConstants.VSStd2KCmdID).GUID, 4, 5)
@@ -162,31 +162,6 @@ namespace MadsKristensen.EditorExtensions
 
             return true;
         }
-
-
-        //private bool IsValidTextBuffer()
-        //{
-        //    IProjectionBuffer projection = _textView.TextBuffer as IProjectionBuffer;            
-
-        //    if (projection != null)
-        //    {
-        //        int position = _textView.Caret.Position.BufferPosition.Position;
-        //        var buffers = projection.SourceBuffers.Where(s => s.ContentType.IsOfType("css") || s.ContentType.IsOfType("javascript"));
-
-        //        foreach (ITextBuffer buffer in buffers)
-        //        {
-        //            IProjectionSnapshot snapshot = buffer.CurrentSnapshot as IProjectionSnapshot;
-        //            bool containsPosition = snapshot.GetSourceSpans().Any(s => s.Contains(position));
-
-        //            if (containsPosition)
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //    }
-
-        //    return true;
-        //}
 
         private bool SetCaret(Span zenSpan, bool isReverse)
         {

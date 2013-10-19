@@ -38,9 +38,9 @@ namespace MadsKristensen.EditorExtensions
         public ITrackingSpan TrackingSpan { get; private set; }
 
         private ITextView _textView;
-        private IAdornmentLayer _layer;
+        private readonly IAdornmentLayer _layer;
         private Path _highlightAdornment;
-        private Brush _highlightBrush;
+        private readonly Brush _highlightBrush;
         private bool _overtype = false;
         private bool _delete = false;
         private bool _projectionsChanged = false;
@@ -53,7 +53,7 @@ namespace MadsKristensen.EditorExtensions
 
             _textView = textView;
 
-            var wpfTextView = _textView as IWpfTextView;
+            var wpfTextView = (IWpfTextView)_textView;
             _layer = wpfTextView.GetAdornmentLayer("HtmlProvisionalTextHighlight");
 
             var textBuffer = _textView.TextBuffer;
@@ -66,10 +66,10 @@ namespace MadsKristensen.EditorExtensions
             textBuffer.Changed += OnTextBufferChanged;
             textBuffer.PostChanged += OnPostChanged;
 
-            var _projectionBuffer = _textView.TextBuffer as IProjectionBuffer;
-            if (_projectionBuffer != null)
+            var projectionBuffer = _textView.TextBuffer as IProjectionBuffer;
+            if (projectionBuffer != null)
             {
-                _projectionBuffer.SourceSpansChanged += OnSourceSpansChanged;
+                projectionBuffer.SourceSpansChanged += OnSourceSpansChanged;
             }
 
             Color highlightColor = SystemColors.HighlightColor;
@@ -131,7 +131,7 @@ namespace MadsKristensen.EditorExtensions
         private void OnSourceSpansChanged(object sender, ProjectionSourceSpansChangedEventArgs e)
         {
             _projectionsChanged = true;
-            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => ResoreHighlight()));
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(ResoreHighlight));
         }
 
         void OnCaretPositionChanged(object sender, CaretPositionChangedEventArgs e)
@@ -218,7 +218,7 @@ namespace MadsKristensen.EditorExtensions
         {
             ClearHighlight();
 
-            var wpfTextView = _textView as IWpfTextView;
+            var wpfTextView = (IWpfTextView)_textView;
             var snapshotSpan = new SnapshotSpan(wpfTextView.TextBuffer.CurrentSnapshot, new Span(bufferPosition, 1));
 
             Geometry highlightGeometry = wpfTextView.TextViewLines.GetTextMarkerGeometry(snapshotSpan);
@@ -245,7 +245,7 @@ namespace MadsKristensen.EditorExtensions
                 return;
 
             _adornmentRemoved = true;
-            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => ResoreHighlight()));
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(ResoreHighlight));
         }
 
         private void ClearHighlight()

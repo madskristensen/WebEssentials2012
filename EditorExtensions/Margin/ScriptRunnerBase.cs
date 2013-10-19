@@ -9,7 +9,7 @@ public abstract class ScriptRunnerBase : IDisposable
 {
     private WebBrowser _browser = new WebBrowser();
     private bool _disposed;
-    private Dispatcher _dispatcher;
+    private readonly Dispatcher _dispatcher;
 
     public ScriptRunnerBase(Dispatcher dispatcher)
     {

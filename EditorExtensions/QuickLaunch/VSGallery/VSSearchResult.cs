@@ -5,7 +5,7 @@ namespace Microsoft.MSDNSearch
 {
     public class VSSearchResult : IVsSearchItemResult
     {
-        private string url;
+        private readonly string url;
 
         public VSSearchResult(string displaytext, string url, VSSearchProvider provider)
         {

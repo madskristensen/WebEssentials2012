@@ -7,46 +7,46 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class DeclarationQuickInfoController : IIntellisenseController
     {
-        private ITextView m_textView;
-        private IList<ITextBuffer> m_subjectBuffers;
-        private DeclarationQuickInfoControllerProvider m_provider;
-        private IQuickInfoSession m_session;
+        private ITextView _textView;
+        private readonly IList<ITextBuffer> _subjectBuffers;
+        private readonly DeclarationQuickInfoControllerProvider _provider;
+        private IQuickInfoSession _session;
 
         internal DeclarationQuickInfoController(ITextView textView, IList<ITextBuffer> subjectBuffers, DeclarationQuickInfoControllerProvider provider)
         {
-            m_textView = textView;
-            m_subjectBuffers = subjectBuffers;
-            m_provider = provider;
+            _textView = textView;
+            _subjectBuffers = subjectBuffers;
+            _provider = provider;
 
-            m_textView.MouseHover += this.OnTextViewMouseHover;
+            _textView.MouseHover += this.OnTextViewMouseHover;
         }
 
         private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e)
         {
             //find the mouse position by mapping down to the subject buffer
-            SnapshotPoint? point = m_textView.BufferGraph.MapDownToFirstMatch
-                 (new SnapshotPoint(m_textView.TextSnapshot, e.Position),
+            SnapshotPoint? point = _textView.BufferGraph.MapDownToFirstMatch
+                 (new SnapshotPoint(_textView.TextSnapshot, e.Position),
                 PointTrackingMode.Positive,
-                snapshot => m_subjectBuffers.Contains(snapshot.TextBuffer),
+                snapshot => _subjectBuffers.Contains(snapshot.TextBuffer),
                 PositionAffinity.Predecessor);
 
             if (point != null)
             {
                 ITrackingPoint triggerPoint = point.Value.Snapshot.CreateTrackingPoint(point.Value.Position, PointTrackingMode.Positive);
 
-                if (!m_provider.QuickInfoBroker.IsQuickInfoActive(m_textView))
+                if (!_provider.QuickInfoBroker.IsQuickInfoActive(_textView))
                 {
-                    m_session = m_provider.QuickInfoBroker.TriggerQuickInfo(m_textView, triggerPoint, true);
+                    _session = _provider.QuickInfoBroker.TriggerQuickInfo(_textView, triggerPoint, true);
                 }
             }
         }
 
         public void Detach(ITextView textView)
         {
-            if (m_textView == textView)
+            if (_textView == textView)
             {
-                m_textView.MouseHover -= this.OnTextViewMouseHover;
-                m_textView = null;
+                _textView.MouseHover -= this.OnTextViewMouseHover;
+                _textView = null;
             }
         }
 

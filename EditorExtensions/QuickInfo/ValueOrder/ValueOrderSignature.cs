@@ -9,13 +9,13 @@ namespace MadsKristensen.EditorExtensions
 {
     public class ValueOrderSignature : ISignature
     {
-        private string _propertyName;
-        private string _syntax;
-        private string _description;
-        private string _content;
-        private CssPropertyNameParameter _nameParam;
+        private readonly string _propertyName;
+        private readonly string _syntax;
+        private readonly string _description;
+        private readonly string _content;
+        private readonly CssPropertyNameParameter _nameParam;
         private IParameter _currentParam;
-        private ITrackingSpan _trackingSpan;
+        private readonly ITrackingSpan _trackingSpan;
         private ISignatureHelpSession _session;
 
         public event EventHandler<CurrentParameterChangedEventArgs> CurrentParameterChanged;
@@ -163,7 +163,7 @@ namespace MadsKristensen.EditorExtensions
 
     internal class CssPropertyNameParameter : IParameter
     {
-        private ValueOrderSignature _signature;
+        private readonly ValueOrderSignature _signature;
 
         public CssPropertyNameParameter(ValueOrderSignature signature)
         {

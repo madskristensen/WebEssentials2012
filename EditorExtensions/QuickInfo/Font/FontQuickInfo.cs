@@ -15,10 +15,11 @@ namespace MadsKristensen.EditorExtensions
     internal class FontQuickInfo : IQuickInfoSource
     {
         private FontQuickInfoSourceProvider _provider;
-        private ITextBuffer _buffer;
-        private static InstalledFontCollection fonts = new InstalledFontCollection();
+        private readonly ITextBuffer _buffer;
+        private static readonly InstalledFontCollection fonts = new InstalledFontCollection();
         private CssTree _tree;
-        private List<string> _allowed = new List<string>() { "FONT", "FONT-FAMILY" };
+        private readonly List<string> _allowed = new List<string> { "FONT", "FONT-FAMILY" };
+        private bool _isDisposed;
 
         public FontQuickInfo(FontQuickInfoSourceProvider provider, ITextBuffer subjectBuffer)
         {
@@ -68,7 +69,7 @@ namespace MadsKristensen.EditorExtensions
         /// </summary>
         public bool EnsureTreeInitialized()
         {
-            if (_tree == null)// && WebEditor.GetHost(CssContentTypeDefinition.CssContentType) != null)
+            if (_tree == null)
             {
                 try
                 {
@@ -93,13 +94,13 @@ namespace MadsKristensen.EditorExtensions
             };
         }
 
-        private bool m_isDisposed;
+
         public void Dispose()
         {
-            if (!m_isDisposed)
+            if (!_isDisposed)
             {
                 GC.SuppressFinalize(this);
-                m_isDisposed = true;
+                _isDisposed = true;
             }
         }
     }

@@ -11,8 +11,9 @@ namespace MadsKristensen.EditorExtensions
     internal class SelectorQuickInfo : IQuickInfoSource
     {
         private SelectorQuickInfoSourceProvider _provider;
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private CssTree _tree;
+        private bool _isDisposed;
 
         public SelectorQuickInfo(SelectorQuickInfoSourceProvider provider, ITextBuffer subjectBuffer)
         {
@@ -51,11 +52,7 @@ namespace MadsKristensen.EditorExtensions
             SelectorSpecificity specificity = new SelectorSpecificity(sel);
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Selector specificity:\t\t" + specificity.ToString());
-            //sb.AppendLine(" - IDs:\t\t\t\t" + specificity.IDs);
-            //sb.AppendLine(" - Classes:\t\t\t" + (specificity.Classes + specificity.PseudoClasses));
-            //sb.AppendLine(" - Attributes:\t\t" + specificity.Attributes);
-            //sb.AppendLine(" - Elements:\t\t" + (specificity.Elements + specificity.PseudoElements));
+            sb.AppendLine("Selector specificity:\t\t" + specificity);
 
             return sb.ToString().Trim();
         }
@@ -81,13 +78,13 @@ namespace MadsKristensen.EditorExtensions
             return _tree != null;
         }
 
-        private bool m_isDisposed;
+
         public void Dispose()
         {
-            if (!m_isDisposed)
+            if (!_isDisposed)
             {
                 GC.SuppressFinalize(this);
-                m_isDisposed = true;
+                _isDisposed = true;
             }
         }
     }

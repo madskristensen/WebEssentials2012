@@ -5,11 +5,8 @@ using System.Linq;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.Utilities;
-using System.Text.RegularExpressions;
-using MadsKristensen.EditorExtensions.QuickInfo;
 using Microsoft.CSS.Core;
 using Microsoft.CSS.Editor;
-using Microsoft.Web.Editor;
 
 namespace MadsKristensen.EditorExtensions
 {

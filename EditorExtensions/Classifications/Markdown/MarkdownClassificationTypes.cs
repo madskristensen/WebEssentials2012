@@ -13,19 +13,19 @@ namespace MadsKristensen.EditorExtensions
         public const string MarkdownCode = "md_code";
         public const string MarkdownQuote = "md_quote";
 
-        [Export, Name(MarkdownClassificationTypes.MarkdownBold), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(MarkdownBold), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition MarkdownClassificationBold = null;
 
-        [Export, Name(MarkdownClassificationTypes.MarkdownItalic), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(MarkdownItalic), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition MarkdownClassificationItalic = null;
 
-        [Export, Name(MarkdownClassificationTypes.MarkdownHeader), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(MarkdownHeader), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition MarkdownClassificationHeader = null;
 
-        [Export, Name(MarkdownClassificationTypes.MarkdownCode), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(MarkdownCode), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition MarkdownClassificationCode = null;
 
-        [Export, Name(MarkdownClassificationTypes.MarkdownQuote), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [Export, Name(MarkdownQuote), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal static ClassificationTypeDefinition MarkdownClassificationQuote = null;
     }
 

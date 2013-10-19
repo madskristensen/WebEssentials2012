@@ -11,10 +11,10 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class VendorOrderSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private Declaration _lastVendor;
-        private Declaration _standard;
-        private ITextView _view;
+        private readonly ITrackingSpan _span;
+        private readonly Declaration _lastVendor;
+        private readonly Declaration _standard;
+        private readonly ITextView _view;
 
         public VendorOrderSmartTagAction(ITrackingSpan span, Declaration lastVendor, Declaration standard, ITextView view)
         {

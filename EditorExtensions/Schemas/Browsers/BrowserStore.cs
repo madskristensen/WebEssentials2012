@@ -12,7 +12,7 @@ namespace MadsKristensen.EditorExtensions
     {
         private const string _fileName = "WE-browsers.xml";
         private static FileSystemWatcher _watcher;
-        private static List<string> _browsers = new List<string>();
+        private static readonly List<string> _browsers = new List<string>();
 
         public static List<string> Browsers
         {

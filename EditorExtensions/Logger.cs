@@ -7,7 +7,7 @@ namespace MadsKristensen.EditorExtensions
     public class Logger
     {
         private static IVsOutputWindowPane pane;
-        private static object _syncRoot = new object();
+        private static readonly object _syncRoot = new object();
 
         public static void Log(string message)
         {

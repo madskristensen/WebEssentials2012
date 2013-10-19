@@ -11,15 +11,11 @@ namespace MadsKristensen.EditorExtensions
     [Name("ClassCompletionContextProvider")]
     internal class ClassCompletionContextProvider : ICssCompletionContextProvider
     {
-        public ClassCompletionContextProvider()
-        {
-        }
-        
         public IEnumerable<Type> ItemTypes
         {
             get
             {
-                return new Type[] { typeof(ClassSelector), };
+                return new[] { typeof(ClassSelector), };
             }
         }
 

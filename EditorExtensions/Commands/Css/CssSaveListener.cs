@@ -38,10 +38,7 @@ namespace MadsKristensen.EditorExtensions
 
                 if (File.Exists(minFile) && EditorExtensionsPackage.DTE.Solution.FindProjectItem(minFile) != null)
                 {
-                    Task.Run(() =>
-                    {
-                        Minify(e.FilePath, minFile);
-                    });
+                    Task.Run(() => Minify(e.FilePath, minFile));
                 }
             }
         }
@@ -96,8 +93,8 @@ namespace MadsKristensen.EditorExtensions
                 ms.Read(compressed, 0, compressed.Length);
 
                 byte[] gzBuffer = new byte[compressed.Length + 4];
-                System.Buffer.BlockCopy(compressed, 0, gzBuffer, 4, compressed.Length);
-                System.Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gzBuffer, 0, 4);
+                Buffer.BlockCopy(compressed, 0, gzBuffer, 4, compressed.Length);
+                Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gzBuffer, 0, 4);
                 return gzBuffer;
             }
         }

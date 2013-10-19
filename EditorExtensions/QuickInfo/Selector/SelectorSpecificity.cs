@@ -5,7 +5,7 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class SelectorSpecificity
     {
-        private Selector _selector;
+        private readonly Selector _selector;
 
         public SelectorSpecificity(Selector selector)
         {
@@ -19,7 +19,6 @@ namespace MadsKristensen.EditorExtensions
         public int PseudoClasses { get; set; }
         public int PseudoElements { get; set; }
         public int Attributes { get; set; }
-        //public int Total { get; set; }
 
         public override string ToString()
         {
@@ -52,7 +51,7 @@ namespace MadsKristensen.EditorExtensions
             // Elements
             var visitorElements = new CssItemCollector<ItemName>();
             _selector.Accept(visitorElements);
-            Elements = visitorElements.Items.Where(i => i.Text != "*" && i.FindType<AttributeSelector>() == null).Count();
+            Elements = visitorElements.Items.Count(i => i.Text != "*" && i.FindType<AttributeSelector>() == null);
 
             // Pseudo Elements
             var visitorPseudoElementSelector = new CssItemCollector<PseudoElementSelector>();
@@ -71,14 +70,11 @@ namespace MadsKristensen.EditorExtensions
             _selector.Accept(visitorPseudoClassFunctionSelector);
 
             int pseudoClases = visitorPseudoClassSelector.Items.Count(p => !p.IsPseudoElement());
-            pseudoClases += visitorPseudoClassFunctionSelector.Items.Where(p => !p.Text.StartsWith(":not(") && !p.Text.StartsWith(":matches(")).Count();
+            pseudoClases += visitorPseudoClassFunctionSelector.Items.Count(p => !p.Text.StartsWith(":not(") && !p.Text.StartsWith(":matches("));
             Elements += visitorPseudoClassSelector.Items.Count(p => p.IsPseudoElement());
 
             if (pseudoClases > 0)
                 PseudoClasses = pseudoClases;// *10;
-
-            // Total
-            //Total = IDs + Classes + Attributes + Elements + PseudoElements + PseudoClasses;
         }
     }
 }

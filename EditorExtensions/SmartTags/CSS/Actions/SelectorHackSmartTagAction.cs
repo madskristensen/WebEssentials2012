@@ -7,10 +7,10 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class SelectorHackSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private Selector _selector;
-        private string _hack;
-        private string _displayText;
+        private readonly ITrackingSpan _span;
+        private readonly Selector _selector;
+        private readonly string _hack;
+        private readonly string _displayText;
 
         public SelectorHackSmartTagAction(ITrackingSpan span, Selector url, string hackPrefix, string displayText)
         {

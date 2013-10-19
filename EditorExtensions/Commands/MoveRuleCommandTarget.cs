@@ -32,8 +32,8 @@ namespace MadsKristensen.EditorExtensions
 
     class MoveRuleTarget : IOleCommandTarget
     {
-        private ITextView _textView;
-        private IOleCommandTarget _nextCommandTarget;
+        private readonly ITextView _textView;
+        private readonly IOleCommandTarget _nextCommandTarget;
         private CssTree _tree;
 
         public MoveRuleTarget(IVsTextView adapter, ITextView textView)
@@ -224,6 +224,7 @@ namespace MadsKristensen.EditorExtensions
     public class WriteBrowserXml
     {
         private const string _fileName = @"C:\Users\madsk\Documents\visual studio 2012\Projects\RealWorldValidator\RealWorldValidator\App_Data\browsers.xml";
+        readonly string[] _vs = new[] { "@-we-palette", "@unspecified", "@global", "@specific" };
 
         public void Parse()
         {
@@ -240,9 +241,6 @@ namespace MadsKristensen.EditorExtensions
 
                 writer.WriteStartElement("atDirectives");
                 WriteSection(writer, directives);
-                //WriteSection(writer, root.AtDirectives);
-                //foreach (var schema in schemas)
-                //    WriteSection(writer, schema.AtDirectives);
                 writer.WriteEndElement();
 
                 // Pseudos
@@ -265,9 +263,6 @@ namespace MadsKristensen.EditorExtensions
 
                 writer.WriteStartElement("properties");
                 WriteProperties(writer, properties, root);
-                //WriteProperties(writer, root.Properties, root);
-                //foreach (var schema in schemas)
-                //    WriteProperties(writer, schema.Properties, schema);
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -285,13 +280,13 @@ namespace MadsKristensen.EditorExtensions
             return list;
         }
 
-        string[] vs = new[] { "@-we-palette", "@unspecified", "@global", "@specific" };
+
 
         private IEnumerable<ICssSchemaInstance> GetAllSchemas(ICssSchemaInstance rootSchema)
         {
             foreach (ICssCompletionListEntry directive in rootSchema.AtDirectives)
             {
-                if (vs.Contains(directive.DisplayText))
+                if (_vs.Contains(directive.DisplayText))
                     continue;
 
                 ICssSchemaInstance schema = rootSchema.GetAtDirectiveSchemaInstance(directive.DisplayText);

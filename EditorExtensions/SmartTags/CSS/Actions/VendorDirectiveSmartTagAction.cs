@@ -9,9 +9,9 @@ namespace MadsKristensen.EditorExtensions
 {
     internal class VendorDirectiveSmartTagAction : CssSmartTagActionBase
     {
-        private ITrackingSpan _span;
-        private AtDirective _directive;
-        private IEnumerable<string> _prefixes;
+        private readonly ITrackingSpan _span;
+        private readonly AtDirective _directive;
+        private readonly IEnumerable<string> _prefixes;
 
         public VendorDirectiveSmartTagAction(ITrackingSpan span, AtDirective directive, IEnumerable<string> prefixes)
         {

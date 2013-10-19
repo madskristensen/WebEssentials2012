@@ -19,8 +19,8 @@ namespace MadsKristensen.EditorExtensions
         {
             var textView = EditorAdaptersFactoryService.GetWpfTextView(textViewAdapter);
 
-            textView.Properties.GetOrCreateSingletonProperty<LessExtractVariableCommandTarget>(() => new LessExtractVariableCommandTarget(textViewAdapter, textView));
-            textView.Properties.GetOrCreateSingletonProperty<LessExtractMixinCommandTarget>(() => new LessExtractMixinCommandTarget(textViewAdapter, textView));
+            textView.Properties.GetOrCreateSingletonProperty(() => new LessExtractVariableCommandTarget(textViewAdapter, textView));
+            textView.Properties.GetOrCreateSingletonProperty(() => new LessExtractMixinCommandTarget(textViewAdapter, textView));
         }
     }
 }

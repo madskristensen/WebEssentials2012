@@ -204,7 +204,7 @@ namespace MadsKristensen.EditorExtensions
 
         public static string GetSolutionFolderPath()
         {
-            EnvDTE.Solution solution = EditorExtensionsPackage.DTE.Solution;
+            Solution solution = EditorExtensionsPackage.DTE.Solution;
 
             if (solution == null || string.IsNullOrEmpty(solution.FullName))
                 return null;

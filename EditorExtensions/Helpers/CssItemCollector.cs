@@ -10,7 +10,7 @@ namespace MadsKristensen.EditorExtensions
     internal class CssItemCollector<T> : ICssSimpleTreeVisitor where T : ParseItem
     {
         public IList<T> Items { get; private set; }
-        private bool _includeChildren;
+        private readonly bool _includeChildren;
 
         public CssItemCollector() : this(false) { }
 

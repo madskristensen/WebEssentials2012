@@ -28,19 +28,19 @@ namespace MadsKristensen.EditorExtensions
 
     internal sealed class JavaScriptOutliningTagger : ITagger<IOutliningRegionTag>
     {
-        string startHide = "{";     //the characters that start the outlining region
-        string endHide = "}";       //the characters that end the outlining region
-        string ellipsis = "...";    //the characters that are displayed when the region is collapsed
-        ITextBuffer buffer;
-        ITextSnapshot snapshot;
-        List<Region> regions;
+        const string startHide = "{"; //the characters that start the outlining region
+        const string endHide = "}"; //the characters that end the outlining region
+        const string ellipsis = "..."; //the characters that are displayed when the region is collapsed
+        readonly ITextBuffer _buffer;
+        ITextSnapshot _snapshot;
+        List<Region> _regions;
 
         public JavaScriptOutliningTagger(ITextBuffer buffer)
         {
-            this.buffer = buffer;
-            this.snapshot = buffer.CurrentSnapshot;
-            this.regions = new List<Region>();
-            this.buffer.ChangedLowPriority += BufferChanged;
+            this._buffer = buffer;
+            this._snapshot = buffer.CurrentSnapshot;
+            this._regions = new List<Region>();
+            this._buffer.ChangedLowPriority += BufferChanged;
 
             Task.Run(() => this.ReParse());
         }
@@ -50,8 +50,8 @@ namespace MadsKristensen.EditorExtensions
             if (spans.Count == 0)
                 yield break;
 
-            List<Region> currentRegions = this.regions;
-            ITextSnapshot currentSnapshot = this.snapshot;
+            List<Region> currentRegions = this._regions;
+            ITextSnapshot currentSnapshot = this._snapshot;
             SnapshotSpan entire = new SnapshotSpan(spans[0].Start, spans[spans.Count - 1].End).TranslateTo(currentSnapshot, SpanTrackingMode.EdgeExclusive);
             int startLineNumber = entire.Start.GetContainingLine().LineNumber;
             int endLineNumber = entire.End.GetContainingLine().LineNumber;
@@ -79,15 +79,15 @@ namespace MadsKristensen.EditorExtensions
         void BufferChanged(object sender, TextContentChangedEventArgs e)
         {
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
-            if (e.After != buffer.CurrentSnapshot)
+            if (e.After != _buffer.CurrentSnapshot)
                 return;
 
-            Task.Run(() => this.ReParse());
+            Task.Run(() => ReParse());
         }
 
         void ReParse()
         {
-            ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
+            ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
             List<Region> newRegions = new List<Region>();
 
             //keep the current (deepest) partial region, which will have
@@ -96,7 +96,7 @@ namespace MadsKristensen.EditorExtensions
 
             foreach (var line in newSnapshot.Lines)
             {
-                int regionStart = -1;
+                int regionStart;
                 string text = line.GetText();
 
                 if (text.IndexOf(startHide) > -1 && text.IndexOf(endHide) > -1)
@@ -169,7 +169,7 @@ namespace MadsKristensen.EditorExtensions
 
             //determine the changed span, and send a changed event with the new spans
             List<Span> oldSpans =
-                new List<Span>(this.regions.Select(r => AsSnapshotSpan(r, this.snapshot)
+                new List<Span>(this._regions.Select(r => AsSnapshotSpan(r, this._snapshot)
                     .TranslateTo(newSnapshot, SpanTrackingMode.EdgeExclusive)
                     .Span));
             List<Span> newSpans =
@@ -197,15 +197,15 @@ namespace MadsKristensen.EditorExtensions
                 changeEnd = Math.Max(changeEnd, newSpans[newSpans.Count - 1].End);
             }
 
-            this.snapshot = newSnapshot;
-            this.regions = newRegions;
+            this._snapshot = newSnapshot;
+            this._regions = newRegions;
 
             if (changeStart <= changeEnd)
             {
-                ITextSnapshot snap = this.snapshot;
+                ITextSnapshot snap = this._snapshot;
                 if (this.TagsChanged != null)
                     this.TagsChanged(this, new SnapshotSpanEventArgs(
-                        new SnapshotSpan(this.snapshot, Span.FromBounds(changeStart, changeEnd))));
+                        new SnapshotSpan(this._snapshot, Span.FromBounds(changeStart, changeEnd))));
             }
         }
 
@@ -230,18 +230,4 @@ namespace MadsKristensen.EditorExtensions
         }
 
     }
-
-    //class PartialRegion
-    //{
-    //    public int StartLine { get; set; }
-    //    public int StartOffset { get; set; }
-    //    public int Level { get; set; }
-    //    public PartialRegion PartialParent { get; set; }
-    //}
-
-    //class Region : PartialRegion
-    //{
-    //    public int EndLine { get; set; }
-    //}
-
 }

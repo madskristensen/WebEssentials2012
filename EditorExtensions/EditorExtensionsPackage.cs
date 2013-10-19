@@ -15,7 +15,6 @@ namespace MadsKristensen.EditorExtensions
     // The key for registering option pages in Text Editors -> CSS
     //HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\11.0_Config\Languages\Language Services\CSS\EditorToolsOptions\Format
 
-
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(GuidList.guidEditorExtensionsPkgString)]
@@ -27,16 +26,11 @@ namespace MadsKristensen.EditorExtensions
     [ProvideOptionPage(typeof(LessOptions), "Web Essentials", "LESS", 101, 105, true)]
     [ProvideOptionPage(typeof(CoffeeScriptOptions), "Web Essentials", "CoffeeScript", 101, 106, true, new[] { "Iced", "JavaScript", "JS", "JScript" })]
     [ProvideOptionPage(typeof(JavaScriptOptions), "Web Essentials", "JavaScript", 101, 107, true, new[] { "JScript", "JS", "Minify", "Minification", "EcmaScript" })]
-    //[ProvideOptionPage(typeof(ScssOptions), "Web Essentials", "SCSS", 101, 108, true)]
     [ProvideSearchProvider(typeof(Microsoft.MSDNSearch.VSSearchProvider), "VS Gallery Search")]
     public sealed class EditorExtensionsPackage : ExtensionPointPackage
     {
         private static DTE2 _dte;
         private static IVsRegisterPriorityCommandTarget _pct;
-
-        public EditorExtensionsPackage()
-        {
-        }
 
         internal static DTE2 DTE
         {
@@ -162,10 +156,10 @@ namespace MadsKristensen.EditorExtensions
 
         public static void ExecuteCommand(string commandName)
         {
-            var command = EditorExtensionsPackage.DTE.Commands.Item(commandName);
+            var command = DTE.Commands.Item(commandName);
             if (command.IsAvailable)
             {
-                EditorExtensionsPackage.DTE.ExecuteCommand(commandName);
+                DTE.ExecuteCommand(commandName);
             }
         }
 
@@ -189,7 +183,7 @@ namespace MadsKristensen.EditorExtensions
 
         public static T GetGlobalService<T>(Type type = null) where T : class
         {
-            return Microsoft.VisualStudio.Shell.Package.GetGlobalService(type ?? typeof(T)) as T;
+            return GetGlobalService(type ?? typeof(T)) as T;
         }
 
         public static IComponentModel ComponentModel
@@ -197,26 +191,5 @@ namespace MadsKristensen.EditorExtensions
             get { return GetGlobalService<IComponentModel>(typeof(SComponentModel)); }
         }
 
-        //internal static IVsHierarchy GetIVsHierarchy(Project project)
-        //{
-        //    IVsSolution solution = (IVsSolution)ServiceProvider.GlobalProvider.GetService(typeof(IVsSolution));
-        //    if (solution == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    IVsHierarchy hier;
-
-        //    Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(solution.GetProjectOfUniqueName(project.UniqueName, out hier));
-
-        //    if (hier == null)
-        //    {
-        //        return null;
-        //    }
-        //    else
-        //    {
-        //        return hier;
-        //    }
-        //}
     }
 }

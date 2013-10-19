@@ -13,7 +13,6 @@ namespace MadsKristensen.EditorExtensions
     [Name("UrlPickerCompletionProvider")]
     internal class UrlPickerCompletionProvider : ICssCompletionListProvider, ICssCompletionCommitListener
     {
-        private static List<string> _imageExtensions = new List<string>() { "", ".png", ".jpg", "gif", ".svg", ".jpeg", ".bmp", ".tif", ".tiff" };
         public CssCompletionContextType ContextType
         {
             get { return (CssCompletionContextType)604; }
@@ -33,8 +32,7 @@ namespace MadsKristensen.EditorExtensions
             {
                 string entry = item.Substring(item.LastIndexOf("\\") + 1);
 
-                //if (_imageExtensions.Contains(Path.GetExtension(entry)))
-                    yield return new UrlPickerCompletionListEntry(entry);
+                yield return new UrlPickerCompletionListEntry(entry);
             }
         }
 

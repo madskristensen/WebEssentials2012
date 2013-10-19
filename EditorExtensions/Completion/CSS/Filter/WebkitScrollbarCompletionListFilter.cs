@@ -11,8 +11,8 @@ namespace MadsKristensen.EditorExtensions.Completion
     [Name("WebkitScrollbarCompletionListFilter")]
     internal class WebkitScrollbarCompletionListFilter : ICssCompletionListFilter
     {
-        private static readonly StringCollection _cache = new StringCollection() 
-        { 
+        private static readonly StringCollection _cache = new StringCollection
+            { 
             ":horizontal",
             ":vertical",
             ":decrement",

@@ -22,7 +22,7 @@ namespace MadsKristensen.EditorExtensions
         {
             var textView = EditorAdaptersFactoryService.GetWpfTextView(textViewAdapter);
 
-            textView.Properties.GetOrCreateSingletonProperty<EncodeSelection>(() => new EncodeSelection(textViewAdapter, textView));
+            textView.Properties.GetOrCreateSingletonProperty(() => new EncodeSelection(textViewAdapter, textView));
         }
     }
 }

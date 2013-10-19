@@ -18,7 +18,7 @@ namespace MadsKristensen.EditorExtensions
         private ITextBuffer _textBuffer;
         private CssTree _tree;
         private bool _pendingUpdate;
-        private ItemHandlerRegistry<ICssSmartTagProvider> _smartTagProviders;
+        private readonly ItemHandlerRegistry<ICssSmartTagProvider> _smartTagProviders;
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 

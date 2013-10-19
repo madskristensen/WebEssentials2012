@@ -9,7 +9,7 @@ namespace MadsKristensen.EditorExtensions
     {
         public static string ConvertToBase64(string fileName)
         {
-            string format = "data:{0};base64,{1}";
+            const string format = "data:{0};base64,{1}";
             byte[] buffer = File.ReadAllBytes(fileName);
             string extension = Path.GetExtension(fileName).Substring(1);
             string contentType = GetMimeType(extension);
