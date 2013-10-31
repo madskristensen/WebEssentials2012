@@ -206,7 +206,8 @@ Licensed under the Apache 2.0 License.
                     }
                     else {
                         var css = tree.toCSS({
-                            compress: args.compress
+                            compress: args.compress,
+                            strictMath: !!args.strictMath
                         });
                         if (output) {
                             if (fso.FileExists(output)) {

@@ -17,6 +17,7 @@ namespace MadsKristensen.EditorExtensions
             Settings.SetValue(WESettings.Keys.LessMinify, LessMinify);
             Settings.SetValue(WESettings.Keys.LessCompileOnBuild, LessCompileOnBuild);
             Settings.SetValue(WESettings.Keys.LessCompileToFolder, LessCompileToFolder);
+            Settings.SetValue(WESettings.Keys.LessStrictMath, LessStrictMath);
 
             Settings.Save();
         }
@@ -28,6 +29,7 @@ namespace MadsKristensen.EditorExtensions
             LessMinify = WESettings.GetBoolean(WESettings.Keys.LessMinify);
             LessCompileOnBuild = WESettings.GetBoolean(WESettings.Keys.LessCompileOnBuild);
             LessCompileToFolder = WESettings.GetBoolean(WESettings.Keys.LessCompileToFolder);
+            LessStrictMath = WESettings.GetBoolean(WESettings.Keys.LessStrictMath);
         }
 
         [LocDisplayName("Generate CSS file on save")]
@@ -54,5 +56,10 @@ namespace MadsKristensen.EditorExtensions
         [Description("Compiles all LESS files into a folder called 'css' in the same directory as the .less file")]
         [Category("LESS")]
         public bool LessCompileToFolder { get; set; }
+
+        [LocDisplayName("Use strict math")]
+        [Description("Set's the strictMath option to true when compiling LESS to CSS")]
+        [Category("LESS")]
+        public bool LessStrictMath { get; set; }
     }
 }
