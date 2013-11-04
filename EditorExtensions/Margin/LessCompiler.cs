@@ -22,6 +22,10 @@ namespace MadsKristensen.EditorExtensions
             start.WindowStyle = ProcessWindowStyle.Hidden;
             start.CreateNoWindow = true;
             start.Arguments = "//nologo //s \"" + GetExecutablePath() + "\" \"" + fileName + "\" \"" + output + "\"";
+            if (WESettings.GetBoolean(WESettings.Keys.LessStrictMath))
+            {
+                start.Arguments += " --strictMath";
+            }
             start.EnvironmentVariables["output"] = output;
             start.EnvironmentVariables["fileName"] = fileName;
             start.UseShellExecute = false;

@@ -120,12 +120,13 @@ Licensed under the Apache 2.0 License.
         for (var i = 0; i < WScript.Arguments.Length; i++) {
             var arg = WScript.Arguments.Item(i);
             // Handle "-switch" and "--switch"
+            var key = i;
             var match = arg.match(/^--?([a-z][0-9a-z-]*)$/i);
             if (match) {
-                i = match[1];
+                key = match[1];
                 arg = true;
             }
-            args[i] = arg;
+            args[key] = arg;
         }
 
         input = args[0];
@@ -205,7 +206,8 @@ Licensed under the Apache 2.0 License.
                     }
                     else {
                         var css = tree.toCSS({
-                            compress: args.compress
+                            compress: args.compress,
+                            strictMath: !!args.strictMath
                         });
                         if (output) {
                             if (fso.FileExists(output)) {

@@ -16,6 +16,7 @@ namespace MadsKristensen.EditorExtensions
             public const string LessMinify = "LessMinify";
             public const string LessCompileOnBuild = "LessCompileOnBuild";
             public const string LessCompileToFolder = "LessCompileToFolder";
+            public const string LessStrictMath = "LessStrictMath";
 
             // SCSS
             public const string GenerateCssFileFromScss = "ScssGenerateCssFile";
