@@ -67,122 +67,61 @@ namespace MadsKristensen.EditorExtensions
             {
                 foreach (Project project in EditorExtensionsPackage.DTE.Solution.Projects)
                 {
-                    UpdateBundle(project, isBuild);
+                    if (project.ProjectItems.Count > 1)
+                    {
+                        UpdateBundle(project.ProjectItems.Item(project.ProjectItems.Count).FileNames[1], isBuild);
+                    }
                 }
             }
             else
             {
-                ProjectItem item = EditorExtensionsPackage.DTE.Solution.FindProjectItem(changedFile);
-                UpdateBundle(item.ContainingProject, isBuild);
+                UpdateBundle(changedFile, isBuild);
             }
         }
 
-        /// <summary>
-        /// Update all bundles in the provided project.
-        /// </summary>
-        /// <param name="project">The project to search in.</param>
-        /// <param name="isBuild">Is this a build time event.</param>
-        private static void UpdateBundle(Project project, bool isBuild)
+        private static void UpdateBundle(string changedFile, bool isBuild)
         {
-            if (project != null && 
-                project.ProjectItems != null &&
-                project.Properties != null)
-            {
-                Property full_path = project.Properties.Item("FullPath");
-                if(full_path == null || full_path.Value == null)
-                    return;
+            string dir = ProjectHelpers.GetProjectFolder(changedFile);
 
-                var root_folder = full_path.Value.ToString();
-
-                if(string.IsNullOrWhiteSpace(root_folder))
-                    return;
-
-                UpdateBundle(root_folder, project.ProjectItems, isBuild);
-            }
-        }
-
-        /// <summary>
-        /// Update all the bundles in the amond the provided project items.
-        /// </summary>
-        /// <param name="rootFolder">The root folder of the project.</param>
-        /// <param name="projectItems">The projects items to search amongst.</param>
-        /// <param name="isBuild">Is this a build time event.</param>
-        private static void UpdateBundle(string rootFolder, ProjectItems projectItems, bool isBuild)
-        {
-            if(projectItems == null) return;
-
-            foreach (ProjectItem project_item in projectItems)
-            {
-                UpdateBundle(rootFolder, project_item, isBuild);
-            }
-        }
-
-        /// <summary>
-        /// Update all the bundles in the provided project item.
-        /// </summary>
-        /// <remarks>The project hierarchy is recursive, so we need to do this recursively too.</remarks>
-        /// <param name="rootFolder">The root folder of the project.</param>
-        /// <param name="projectItems">The projects item to search amongst.</param>
-        /// <param name="isBuild">Is this a build time event.</param>
-        private static void UpdateBundle(string rootFolder, ProjectItem projectItem, bool isBuild)
-        {
-            for (short i = 0; i < projectItem.FileCount; i++)
-            {
-                var filename = projectItem.FileNames[i];
-                UpdateBundle(rootFolder, filename, isBuild);
-            }
-            UpdateBundle(rootFolder, projectItem.ProjectItems, isBuild);
-        }
-
-        /// <summary>
-        /// Update the following bundle file.
-        /// </summary>
-        /// <remarks>
-        /// This method will update the bundle file only if the filename is actually a bundle file.
-        /// Otherwise does nothing.
-        /// It also skips the app_data folder.
-        /// </remarks>
-        /// <param name="rootFolder">The root folder of the project.</param>
-        /// <param name="changedFile">The bundle file to update.</param>
-        /// <param name="isBuild">Is this a build time event.</param>
-        private static void UpdateBundle(string rootFolder, string changedFile, bool isBuild)
-        {
-            if (changedFile.IndexOf("\\app_data\\", StringComparison.OrdinalIgnoreCase) > -1)
+            if (string.IsNullOrEmpty(dir))
                 return;
 
-            if(Path.GetExtension(changedFile) != _ext)
-                return;
-
-            XmlDocument doc = GetXmlDocument(changedFile);
-            bool enabled = false;
-
-            if (doc != null)
+            foreach (string file in Directory.GetFiles(dir, "*" + _ext, SearchOption.AllDirectories))
             {
-                XmlNode bundleNode = doc.SelectSingleNode("//bundle");
-                if (bundleNode == null)
-                    return;
+                if (file.IndexOf("\\app_data\\", StringComparison.OrdinalIgnoreCase) > -1)
+                    continue;
 
-                XmlNodeList nodes = doc.SelectNodes("//file");
-                foreach (XmlNode node in nodes)
+                XmlDocument doc = GetXmlDocument(file);
+                bool enabled = false;
+
+                if (doc != null)
                 {
-                    string relative = node.InnerText;
-                    string absolute = ProjectHelpers.ToAbsoluteFilePath(relative, rootFolder).Replace("/", "\\").Replace("\\\\", "\\");
+                    XmlNode bundleNode = doc.SelectSingleNode("//bundle");
+                    if (bundleNode == null)
+                        continue;
 
-                    if (absolute.Equals(changedFile.Replace("\\\\", "\\"), StringComparison.OrdinalIgnoreCase))
+                    XmlNodeList nodes = doc.SelectNodes("//file");
+                    foreach (XmlNode node in nodes)
+                    {
+                        string relative = node.InnerText;
+                        string absolute = ProjectHelpers.ToAbsoluteFilePath(relative, dir).Replace("/", "\\").Replace("\\\\", "\\");
+
+                        if (changedFile != null && absolute.Equals(changedFile.Replace("\\\\", "\\"), StringComparison.OrdinalIgnoreCase))
+                        {
+                            enabled = true;
+                            break;
+                        }
+                    }
+
+                    if (isBuild && bundleNode.Attributes["runOnBuild"] != null && bundleNode.Attributes["runOnBuild"].InnerText == "true")
                     {
                         enabled = true;
-                        break;
                     }
-                }
 
-                if (isBuild && bundleNode.Attributes != null && bundleNode.Attributes["runOnBuild"] != null && bundleNode.Attributes["runOnBuild"].InnerText == "true")
-                {
-                    enabled = true;
-                }
-
-                if (enabled)
-                {
-                    WriteBundleFile(changedFile, doc);
+                    if (enabled)
+                    {
+                        WriteBundleFile(file, doc);
+                    }
                 }
             }
         }
