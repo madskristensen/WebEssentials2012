@@ -51,9 +51,10 @@ namespace MadsKristensen.EditorExtensions
 
                 if (!File.Exists(fileName))
                 {
-                    _dte.UndoContext.Open("Extract to file...");
+                    bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
 
-                    using (StreamWriter writer = new StreamWriter(fileName, false, new UTF8Encoding(true)))
+                    _dte.UndoContext.Open("Extract to file...");
+                    using (StreamWriter writer = new StreamWriter(fileName, false, new UTF8Encoding(useBom)))
                     {
                         writer.Write(content);
                     }

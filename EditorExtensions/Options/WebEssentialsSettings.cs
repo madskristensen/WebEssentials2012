@@ -9,6 +9,7 @@ namespace MadsKristensen.EditorExtensions
             public const string EnableHtmlZenCoding = "HtmlEnableZenCoding";
             public const string EnableMustache = "HtmlEnableMustache";
             public const string KeepImportantComments = "KeepImportantComments";
+            public const string UseBom = "UseBom";
 
             // LESS
             public const string GenerateCssFileFromLess = "LessGenerateCssFile";

@@ -70,8 +70,9 @@ namespace MadsKristensen.EditorExtensions
         public static void CreateStylesheet()
         {
             string file = Path.Combine(ProjectHelpers.GetSolutionFolderPath(), _stylesheet);
+            bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
 
-            using (StreamWriter writer = new StreamWriter(file, false, new UTF8Encoding(true)))
+            using (StreamWriter writer = new StreamWriter(file, false, new UTF8Encoding(useBom)))
             {
                 writer.Write("body { background: yellow; }");
             }

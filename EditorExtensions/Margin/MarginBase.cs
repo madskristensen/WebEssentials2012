@@ -302,7 +302,8 @@ namespace MadsKristensen.EditorExtensions
             {
                 if (fileExist || (!fileExist && CanWriteToDisk(content)))
                 {
-                    using (StreamWriter writer = new StreamWriter(fileName, false, new UTF8Encoding(true)))
+                    bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
+                    using (StreamWriter writer = new StreamWriter(fileName, false, new UTF8Encoding(useBom)))
                     {
                         writer.Write(content);
                         fileWritten = true;

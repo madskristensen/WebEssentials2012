@@ -50,15 +50,16 @@ namespace MadsKristensen.EditorExtensions
         }
 
         public override void MinifyFile(string fileName, string source)
-        {
+        {            
             if (WESettings.GetBoolean(WESettings.Keys.LessMinify) && !Path.GetFileName(fileName).StartsWith("_"))
             {
+                bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
                 string content = MinifyFileMenu.MinifyString(".css", source);
                 string minFile = GetCompiledFileName(fileName, ".min.css", UseCompiledFolder);// fileName.Replace(".less", ".min.css");
                 bool fileExist = File.Exists(minFile);
 
                 ProjectHelpers.CheckOutFileFromSourceControl(minFile);
-                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(true)))
+                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(useBom)))
                 {
                     writer.Write(content);
                 }

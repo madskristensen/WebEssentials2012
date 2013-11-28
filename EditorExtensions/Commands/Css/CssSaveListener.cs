@@ -50,10 +50,11 @@ namespace MadsKristensen.EditorExtensions
 
             try
             {
+                bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
                 string content = MinifyFileMenu.MinifyString(".css", File.ReadAllText(file));
 
                 ProjectHelpers.CheckOutFileFromSourceControl(minFile);
-                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(true)))
+                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(useBom)))
                 {
                     writer.Write(content);
                 }

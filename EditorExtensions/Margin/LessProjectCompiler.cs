@@ -65,7 +65,8 @@ namespace MadsKristensen.EditorExtensions
                         ProjectHelpers.CheckOutFileFromSourceControl(cssFileName);
                         try
                         {
-                            using (StreamWriter writer = new StreamWriter(cssFileName, false, new UTF8Encoding(true)))
+                            bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
+                            using (StreamWriter writer = new StreamWriter(cssFileName, false, new UTF8Encoding(useBom)))
                             {
                                 writer.Write(result.Result);
                             }
@@ -100,9 +101,10 @@ namespace MadsKristensen.EditorExtensions
                 if (old != content)
                 {
                     bool fileExist = File.Exists(minFile);
+                    bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
 
                     ProjectHelpers.CheckOutFileFromSourceControl(minFile);
-                    using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(true)))
+                    using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(useBom)))
                     {
                         writer.Write(content);
                     }

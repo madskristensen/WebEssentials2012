@@ -327,8 +327,10 @@ namespace MadsKristensen.EditorExtensions
 
             if (!File.Exists(bundlePath) || File.ReadAllText(bundlePath) != sb.ToString())
             {
+                bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
+
                 ProjectHelpers.CheckOutFileFromSourceControl(bundlePath);
-                using (StreamWriter writer = new StreamWriter(bundlePath, false, new UTF8Encoding(true)))
+                using (StreamWriter writer = new StreamWriter(bundlePath, false, new UTF8Encoding(useBom)))
                 {
                     writer.Write(sb.ToString());
                     Logger.Log("Updating bundle: " + Path.GetFileName(bundlePath));
@@ -361,10 +363,10 @@ namespace MadsKristensen.EditorExtensions
             else if (extension.Equals(".css", StringComparison.OrdinalIgnoreCase))
             {
                 string minContent = MinifyFileMenu.MinifyString(extension, content);
+                bool useBom       = WESettings.GetBoolean(WESettings.Keys.UseBom);
 
                 ProjectHelpers.CheckOutFileFromSourceControl(minPath);
-
-                using (StreamWriter writer = new StreamWriter(minPath, false, new UTF8Encoding(true)))
+                using (StreamWriter writer = new StreamWriter(minPath, false, new UTF8Encoding(useBom)))
                 {
                     writer.Write(minContent);
                 }
