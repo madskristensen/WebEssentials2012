@@ -37,6 +37,11 @@ namespace MadsKristensen.EditorExtensions
         [Category("Misc")]
         public bool EnableHtmlZenCoding { get; set; }
 
+        [LocDisplayName("Save UTF-8 files with BOM")]
+        [Description("Whether to use BOM « byte-order-mark » when saving UTF-8 files")]
+        [Category("Misc")]
+        public bool UseBom { get; set; }
+
         [LocDisplayName("Keep important comments")]
         [Description("Don't strip important comments when minifying JS and CSS. Important comments follows this pattern: /*! text */")]
         [Category("Minification")]

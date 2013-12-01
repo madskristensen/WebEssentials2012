@@ -70,10 +70,11 @@ namespace MadsKristensen.EditorExtensions
         {
             _projectFileStep++;
             string file = GetCompiledFileName(e.State, ".js", UseCompiledFolder);
+            bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
 
             ProjectHelpers.CheckOutFileFromSourceControl(file);
 
-            using (StreamWriter writer = new StreamWriter(file, false, new UTF8Encoding(true)))
+            using (StreamWriter writer = new StreamWriter(file, false, new UTF8Encoding(useBom)))
             {
                 writer.Write(e.Result);
             }
@@ -140,12 +141,13 @@ namespace MadsKristensen.EditorExtensions
         {
             if (WESettings.GetBoolean(WESettings.Keys.CoffeeScriptMinify))
             {
+                bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
                 string content = MinifyFileMenu.MinifyString(".js", source);
                 string minFile = GetCompiledFileName(fileName, ".min.js", UseCompiledFolder);//fileName.Replace(".coffee", ".min.js");
                 bool fileExist = File.Exists(minFile);
 
                 ProjectHelpers.CheckOutFileFromSourceControl(minFile);
-                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(true)))
+                using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(useBom)))
                 {
                     writer.Write(content);
                 }

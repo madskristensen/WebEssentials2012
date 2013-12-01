@@ -289,6 +289,7 @@ namespace MadsKristensen.EditorExtensions
             // MISC
             dic.Add(Keys.ShowBrowserTooltip, true);
             dic.Add(Keys.WrapCoffeeScriptClosure, true);
+            dic.Add(Keys.UseBom, false);
 
             // Minification
             dic.Add(Keys.EnableCssMinification, true);

@@ -77,10 +77,11 @@ namespace MadsKristensen.EditorExtensions
 
         private static void MinifyFileWithSourceMap(string file, string minFile, CodeSettings settings, bool isBundle)
         {
+            bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
             string mapPath = minFile + ".map";
-            ProjectHelpers.CheckOutFileFromSourceControl(mapPath);
 
-            using (TextWriter writer = new StreamWriter(mapPath, false, new UTF8Encoding(false)))
+            ProjectHelpers.CheckOutFileFromSourceControl(mapPath);
+            using (TextWriter writer = new StreamWriter(mapPath, false, new UTF8Encoding(useBom)))
             using (V3SourceMap sourceMap = new V3SourceMap(writer))
             {
                 settings.SymbolsMap = sourceMap;
@@ -115,8 +116,10 @@ namespace MadsKristensen.EditorExtensions
                 content += "\r\n/*\r\n//# sourceMappingURL=" + Path.GetFileName(minFile) + ".map\r\n*/";
             }
 
+            bool useBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
+
             ProjectHelpers.CheckOutFileFromSourceControl(minFile);
-            using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(true)))
+            using (StreamWriter writer = new StreamWriter(minFile, false, new UTF8Encoding(useBom)))
             {
                 writer.Write(content);
             }
