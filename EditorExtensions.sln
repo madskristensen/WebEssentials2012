@@ -5,12 +5,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorExtensions", "EditorE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{140A15DE-0F66-4377-BB52-BC24C7FC46E9}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		CssSorter.dll = CssSorter.dll
 		LICENCE.txt = LICENCE.txt
 		MarkdownSharp.dll = MarkdownSharp.dll
 		README.md = README.md
 		WebEssentials2012logo.pdn = WebEssentials2012logo.pdn
 		ZenCoding.dll = ZenCoding.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{473B687B-CA4B-44BE-97B0-3165A72AA6BD}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
