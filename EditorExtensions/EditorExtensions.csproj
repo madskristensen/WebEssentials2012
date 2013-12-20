@@ -234,6 +234,10 @@
     <Compile Include="Classifications\RobotsTxt\RobotsTxtClassificationTypes.cs" />
     <Compile Include="Classifications\RobotsTxt\RobotsTxtClassifier.cs" />
     <Compile Include="Classifications\RobotsTxt\RobotsTxtContentTypeDefinition.cs" />
+    <Compile Include="Classifications\WebVTT\WebVttClassificationTypes.cs" />
+    <Compile Include="Classifications\WebVTT\WebVttClassifier.cs" />
+    <Compile Include="Classifications\WebVTT\WebVttClassifierProvider.cs" />
+    <Compile Include="Classifications\WebVTT\WebVttContentTypeDefinition.cs" />
     <Compile Include="Commands\CommandTargetBase.cs" />
     <Compile Include="Commands\Css\CssSelectBrowsers.cs" />
     <Compile Include="Commands\Css\CssFormatCommandTarget.cs" />
