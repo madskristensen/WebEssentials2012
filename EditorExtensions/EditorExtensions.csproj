@@ -223,6 +223,7 @@
     </Compile>
     <Compile Include="Adornments\Color\IntraTextAdornmentTagger.cs" />
     <Compile Include="Classifications\CSS\BraceMatching.cs" />
+    <Compile Include="Classifications\CSS\VariableClassifier.cs" />
     <Compile Include="Classifications\HTML\HtmlRegionTagger.cs" />
     <Compile Include="Classifications\JavaScript\JavaScriptArrayOutlining.cs" />
     <Compile Include="Classifications\JavaScript\JavaScriptHighlightWordTagger.cs" />
@@ -291,11 +292,13 @@
     <Compile Include="Completion\CSS\CompletionProviders\UrlPickerCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\IdCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\TagCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\VariableNameCompletionProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\ClassContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\LessPseudoContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\UrlPickerContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\IdContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\TagContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\VariableContextProvider.cs" />
     <Compile Include="Completion\CSS\CustomCompletionListEntry.cs" />
     <Compile Include="Completion\CSS\Filter\GradientCompletionListFilter.cs" />
     <Compile Include="Completion\CSS\RegionCompletionListEntry.cs" />
@@ -311,6 +314,8 @@
     <Compile Include="DropTargets\FontDrop.cs" />
     <Compile Include="DropTargets\ImageDrop.cs" />
     <Compile Include="DropTargets\TypeScriptDrop.cs" />
+    <Compile Include="Helpers\CssTreeWatcher.cs" />
+    <Compile Include="Validation\CSS\Filters\VariableCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />
     <Compile Include="Validation\CSS\Providers\ColorValuesInRangeErrorTagProvider.cs">
