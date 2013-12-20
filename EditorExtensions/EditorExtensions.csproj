@@ -310,6 +310,7 @@
     <Compile Include="Completion\CSS\UrlPickerCompletionListEntry.cs" />
     <Compile Include="Completion\CSS\Filter\HideInheritInitialCompletionListFilter.cs" />
     <Compile Include="DropTargets\BundleDrop.cs" />
+    <Compile Include="DropTargets\HtmlImageDrop.cs" />
     <Compile Include="DropTargets\StylesheetDrop.cs" />
     <Compile Include="DropTargets\FontDrop.cs" />
     <Compile Include="DropTargets\ImageDrop.cs" />
