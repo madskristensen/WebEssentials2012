@@ -286,6 +286,9 @@
     <Compile Include="Completion\CSS\CompletionProviders\AnimationNameCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\ColorCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\FontFamilyCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\MediaCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\MediaTypeCompletionProvider.cs" />
+    <Compile Include="Completion\CSS\CompletionProviders\MediaValueCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\RegionCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\ImportantCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\FontCompletionProvider.cs" />
@@ -295,6 +298,8 @@
     <Compile Include="Completion\CSS\CompletionProviders\VariableNameCompletionProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\ClassContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\LessPseudoContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\MediaFeatureContextProvider.cs" />
+    <Compile Include="Completion\CSS\ContextProviders\MediaQueryContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\UrlPickerContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\IdContextProvider.cs" />
     <Compile Include="Completion\CSS\ContextProviders\TagContextProvider.cs" />
@@ -579,12 +584,61 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\sort.png" />
+    <Content Include="Snippets\CSS\Web Essentials\media query desktop laptop.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query ipad landscape.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query ipad portrait.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query ipad.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 4 landscape.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 4 portrait.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 4.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 5 landscape.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 5 portrait.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query iphone 5.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query large screen.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query smartphone landscape.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query smartphone portrait.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query smartphone.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\CSS\Web Essentials\media query windows snap view.snippet">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Source.extension.vsixmanifest" />
     <Resource Include="Resources\vsgallery.png" />
     <Content Include="Schemas\css-we-settings.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Schemas\WE-Palette.css">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\snippets.pkgdef">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="WebEssentials2012logo.png">
