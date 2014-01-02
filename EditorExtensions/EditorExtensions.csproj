@@ -284,6 +284,7 @@
     <Compile Include="Commands\MoveRuleCommandTarget.cs" />
     <Compile Include="Commands\TypeThrough\ProvisionalText.cs" />
     <Compile Include="Commands\TypeThrough\TypeThroughController.cs" />
+    <Compile Include="Commands\WebVTT\WebVttCreationListener.cs" />
     <Compile Include="Completion\CSS\CompletionListEntry.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\ClassCompletionProvider.cs" />
     <Compile Include="Completion\CSS\CompletionProviders\AnimationNameCompletionProvider.cs" />
