@@ -239,6 +239,8 @@
     <Compile Include="Classifications\WebVTT\WebVttClassifier.cs" />
     <Compile Include="Classifications\WebVTT\WebVttClassifierProvider.cs" />
     <Compile Include="Classifications\WebVTT\WebVttContentTypeDefinition.cs" />
+    <Compile Include="Commands\CoffeeScript\CoffeeScriptCreationListener.cs" />
+    <Compile Include="Commands\CoffeeScript\EnterIndentationCommandTarget.cs" />
     <Compile Include="Commands\CommandTargetBase.cs" />
     <Compile Include="Commands\Css\CssSelectBrowsers.cs" />
     <Compile Include="Commands\Css\CssFormatCommandTarget.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Commands\LESS\LessExtractMixinCommandTarget.cs" />
     <Compile Include="Commands\LESS\LessExtractVariableCommandTarget.cs" />
     <Compile Include="Commands\LESS\LessCreationListener.cs" />
+    <Compile Include="Commands\Shared\CommentCommandTarget.cs" />
     <Compile Include="Commands\Shared\EncodeSelectionCommandTarget.cs" />
     <Compile Include="Commands\Shared\TextCreationListener.cs" />
     <Compile Include="Commands\Shared\MinifySelectionCommandTarget.cs" />
