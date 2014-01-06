@@ -222,6 +222,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Adornments\Color\IntraTextAdornmentTagger.cs" />
+    <Compile Include="Classifications\AppCache\AppCacheClassificationTypes.cs" />
+    <Compile Include="Classifications\AppCache\AppCacheClassifier.cs" />
+    <Compile Include="Classifications\AppCache\AppCacheClassifierProvider.cs" />
+    <Compile Include="Classifications\AppCache\AppCacheContentTypeDefinition.cs" />
     <Compile Include="Classifications\CSS\BraceMatching.cs" />
     <Compile Include="Classifications\CSS\VariableClassifier.cs" />
     <Compile Include="Classifications\HTML\HtmlRegionTagger.cs" />
