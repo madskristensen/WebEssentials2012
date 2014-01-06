@@ -12,6 +12,7 @@ namespace MadsKristensen.EditorExtensions
     [ContentType("LESS")]
     [ContentType("CoffeeScript")]
     [ContentType("Markdown")]
+    [ContentType("TypeScript")]
     [TextViewRole(PredefinedTextViewRoles.Debuggable)]
     internal sealed class MarginFactory : IWpfTextViewMarginProvider
     {
@@ -37,6 +38,9 @@ namespace MadsKristensen.EditorExtensions
                         
                     case "markdown":
                         return new MarkdownMargin("text", source, true, document);
+
+                    case "TypeScript":
+                        return new TypeScriptMargin("JavaScript", source, true, document);
                 }
             }
 

@@ -325,6 +325,7 @@
     <Compile Include="DropTargets\ImageDrop.cs" />
     <Compile Include="DropTargets\TypeScriptDrop.cs" />
     <Compile Include="Helpers\CssTreeWatcher.cs" />
+    <Compile Include="Margin\TypeScriptMargin.cs" />
     <Compile Include="Validation\CSS\Filters\VariableCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />
