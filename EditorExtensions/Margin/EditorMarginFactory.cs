@@ -40,7 +40,8 @@ namespace MadsKristensen.EditorExtensions
                         return new MarkdownMargin("text", source, true, document);
 
                     case "TypeScript":
-                        return new TypeScriptMargin("JavaScript", source, true, document);
+                        bool showTypeScript = WESettings.GetBoolean(WESettings.Keys.ShowTypeScriptPreviewWindow);
+                        return new TypeScriptMargin("JavaScript", source, showTypeScript, document);
                 }
             }
 

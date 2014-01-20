@@ -26,6 +26,7 @@ namespace MadsKristensen.EditorExtensions
     [ProvideOptionPage(typeof(LessOptions), "Web Essentials", "LESS", 101, 105, true)]
     [ProvideOptionPage(typeof(CoffeeScriptOptions), "Web Essentials", "CoffeeScript", 101, 106, true, new[] { "Iced", "JavaScript", "JS", "JScript" })]
     [ProvideOptionPage(typeof(JavaScriptOptions), "Web Essentials", "JavaScript", 101, 107, true, new[] { "JScript", "JS", "Minify", "Minification", "EcmaScript" })]
+    [ProvideOptionPage(typeof(TypeScriptOptions), "Web Essentials", "TypeScript", 101, 108, true)]
     [ProvideSearchProvider(typeof(Microsoft.MSDNSearch.VSSearchProvider), "VS Gallery Search")]
     public sealed class EditorExtensionsPackage : ExtensionPointPackage
     {

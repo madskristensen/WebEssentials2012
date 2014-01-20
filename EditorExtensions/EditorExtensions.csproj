@@ -330,6 +330,9 @@
     <Compile Include="DropTargets\TypeScriptDrop.cs" />
     <Compile Include="Helpers\CssTreeWatcher.cs" />
     <Compile Include="Margin\TypeScriptMargin.cs" />
+    <Compile Include="Options\TypeScript.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Validation\CSS\Filters\VariableCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />

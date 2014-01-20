@@ -61,6 +61,9 @@ namespace MadsKristensen.EditorExtensions
             public const string GenerateJavaScriptSourceMaps = "JavaScriptGenerateSourceMaps";
             public const string JavaScriptEnableGzipping = "JavaScriptEnableGzipping";
 
+            // TypeScript
+            public const string ShowTypeScriptPreviewWindow = "TypeScriptShowPreviewWindow";
+
             // JSHint
             public const string EnableJsHint = "JsHintEnable";
             public const string RunJsHintOnBuild = "JsHintRunOnBuild";

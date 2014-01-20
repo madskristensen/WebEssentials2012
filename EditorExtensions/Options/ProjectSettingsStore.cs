@@ -269,6 +269,9 @@ namespace MadsKristensen.EditorExtensions
             dic.Add(Keys.ShowUnsupported, true);
             dic.Add(Keys.AutoCloseCurlyBraces, true);
 
+            // TypeScript
+            dic.Add(Keys.ShowTypeScriptPreviewWindow, true);
+
             //JSHint
             dic.Add(Keys.EnableJsHint, true);
             dic.Add(Keys.JsHintErrorLocation, (int)Keys.FullErrorLocation.Messages);
