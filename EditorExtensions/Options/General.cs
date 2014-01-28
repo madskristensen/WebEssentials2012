@@ -15,6 +15,7 @@ namespace MadsKristensen.EditorExtensions
             Settings.SetValue(WESettings.Keys.EnableMustache, EnableMustache);
             Settings.SetValue(WESettings.Keys.EnableHtmlZenCoding, EnableHtmlZenCoding);
             Settings.SetValue(WESettings.Keys.KeepImportantComments, KeepImportantComments);
+            Settings.SetValue(WESettings.Keys.UseBom, UseBom);
 
             Settings.Save();
         }
@@ -24,6 +25,7 @@ namespace MadsKristensen.EditorExtensions
             EnableMustache = WESettings.GetBoolean(WESettings.Keys.EnableMustache);
             EnableHtmlZenCoding = WESettings.GetBoolean(WESettings.Keys.EnableHtmlZenCoding);
             KeepImportantComments = WESettings.GetBoolean(WESettings.Keys.KeepImportantComments);
+            UseBom = WESettings.GetBoolean(WESettings.Keys.UseBom);
         }
 
         // MISC
