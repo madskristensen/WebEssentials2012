@@ -23,8 +23,8 @@ namespace MadsKristensen.EditorExtensions
         }
         
         [LocDisplayName("Show preview window")]
-        [Description("Show the preview window when editing a CoffeeScript file.")]
-        [Category("CoffeeScript")]
+        [Description("Show the preview window when editing a TypeScript file.")]
+        [Category("TypeScript")]
         public bool ShowTypeScriptPreviewWindow { get; set; }
     }
 }
