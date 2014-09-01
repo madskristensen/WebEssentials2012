@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.Text;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Windows.Threading;
@@ -41,6 +42,12 @@ namespace MadsKristensen.EditorExtensions
 
                 if (!string.IsNullOrEmpty(fullPath))
                 {
+                    if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(fullPath, "compiler", "coffeescript"))
+                    {
+                        Logger.Log(String.Format(CultureInfo.CurrentCulture, "CoffeeScript: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(fullPath)));
+                        return;
+                    }
+                    
                     string dir = Path.GetDirectoryName(fullPath);
                     var files = Directory.GetFiles(dir, "*.coffee", SearchOption.AllDirectories);
 
