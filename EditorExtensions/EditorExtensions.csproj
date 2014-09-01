@@ -336,6 +336,7 @@
     <Compile Include="Options\TypeScript.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Options\WEIgnore.cs" />
     <Compile Include="Validation\CSS\Filters\VariableCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessAmpersandCssErrorFilter.cs" />
     <Compile Include="Validation\LESS\Filters\LessExtendCssErrorFilter.cs" />
