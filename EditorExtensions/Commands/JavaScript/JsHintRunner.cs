@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -94,6 +95,12 @@ namespace MadsKristensen.EditorExtensions
                 {
                     return true;
                 }
+            }
+
+            if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(file, "linter", "jshint"))
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "JsHint: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(file)));
+                return false;
             }
 
             return false;

@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,12 @@ namespace MadsKristensen.EditorExtensions
 
             if (Path.GetFileName(fileName).StartsWith("_"))
                 return false;
+
+            if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(fileName, "compiler", "less"))
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "LESS: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(fileName)));
+                return false;
+            }
 
             string minFile = MarginBase.GetCompiledFileName(fileName, ".min.css", WESettings.GetBoolean(WESettings.Keys.LessCompileToFolder));
             if (File.Exists(minFile) && WESettings.GetBoolean(WESettings.Keys.LessMinify))

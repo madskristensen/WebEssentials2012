@@ -1,5 +1,7 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Text;
+using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -51,7 +53,7 @@ namespace MadsKristensen.EditorExtensions
 
         public override void MinifyFile(string fileName, string source)
         {            
-            if (WESettings.GetBoolean(WESettings.Keys.LessMinify) && !Path.GetFileName(fileName).StartsWith("_"))
+            if (WESettings.GetBoolean(WESettings.Keys.LessMinify) && CanMinify(fileName))
             {
                 bool useBom    = WESettings.GetBoolean(WESettings.Keys.UseBom);
                 string content = MinifyFileMenu.MinifyString(".css", source);
@@ -69,6 +71,20 @@ namespace MadsKristensen.EditorExtensions
             }
         }
 
+        private static bool CanMinify(string fileName)
+        {
+            if (Path.GetFileName(fileName).StartsWith("_"))
+                return false;
+
+            if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(fileName, "compiler", "less"))
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "LESS: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(fileName)));
+                return false;
+            }
+
+            return true;
+        }
+
         public override bool UseCompiledFolder
         {
             get { return WESettings.GetBoolean(WESettings.Keys.LessCompileToFolder); }
@@ -76,7 +92,7 @@ namespace MadsKristensen.EditorExtensions
 
         public override bool IsSaveFileEnabled
         {
-            get { return WESettings.GetBoolean(WESettings.Keys.GenerateCssFileFromLess) && !Path.GetFileName(Document.FilePath).StartsWith("_"); }
+            get { return WESettings.GetBoolean(WESettings.Keys.GenerateCssFileFromLess) && CanMinify(Document.FilePath); }
         }
 
         protected override bool CanWriteToDisk(string source)
