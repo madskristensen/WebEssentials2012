@@ -16,7 +16,7 @@ namespace MadsKristensen.EditorExtensions
     //HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\11.0_Config\Languages\Language Services\CSS\EditorToolsOptions\Format
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "3.8", IconResourceID = 400)]
     [Guid(GuidList.guidEditorExtensionsPkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
