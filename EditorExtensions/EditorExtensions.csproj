@@ -576,12 +576,12 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\numbers.png" />
-    <EmbeddedResource Include="Resources\Scripts\CoffeeScript-1.4.js" />
     <Content Include="registry.pkgdef">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\extract.png" />
+    <EmbeddedResource Include="Resources\Scripts\CoffeeScript-1.8.js" />
     <Content Include="Resources\Scripts\es5-shim.min.js">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

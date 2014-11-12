@@ -19,7 +19,7 @@ public class CoffeeScriptCompiler : ScriptRunnerBase
 
         string bare = WESettings.GetBoolean(WESettings.Keys.WrapCoffeeScriptClosure) ? "false" : "true";
 
-        string compiler = "MadsKristensen.EditorExtensions.Resources.Scripts.CoffeeScript-1.4.js";
+        string compiler = "MadsKristensen.EditorExtensions.Resources.Scripts.CoffeeScript-1.8.js";
         if (WESettings.GetBoolean(WESettings.Keys.EnableIcedCoffeeScript))
         {
             compiler = "MadsKristensen.EditorExtensions.Resources.Scripts.IcedCoffeeScript-1.3.3.js";
