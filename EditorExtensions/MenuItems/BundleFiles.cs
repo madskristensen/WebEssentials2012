@@ -339,7 +339,62 @@ namespace MadsKristensen.EditorExtensions
 
                 if (bundleNode.Attributes["minify"] != null || bundleNode.Attributes["minify"].InnerText == "true")
                 {
-                    WriteMinFile(filePath, bundlePath, sb.ToString(), extension);
+                     //  WriteMinFile(filePath, bundlePath, sb.ToString(), extension);
+                    //begin add  by jackie
+                    StringBuilder sbMin = new StringBuilder();
+
+                    string minBundlePath = bundlePath.Replace(Path.GetExtension(bundlePath), ".min" + Path.GetExtension(bundlePath));
+                    if (extension.Equals(".js", StringComparison.OrdinalIgnoreCase))
+                    {
+                        CodeSettings settings = new CodeSettings()
+                        {
+                            EvalTreatment = EvalTreatment.MakeImmediateSafe,
+                            TermSemicolons = true,
+                            PreserveImportantComments = WESettings.GetBoolean(WESettings.Keys.KeepImportantComments)
+                        };
+                        Minifier minifier = new Minifier();
+                        foreach (string file in files.Keys)
+                        {
+                            string minFile = file.Insert(file.Length - 2, "min.");
+                            if (File.Exists(minFile))
+                            {
+                                sbMin.AppendLine(File.ReadAllText(minFile));
+                            }
+                            else
+                            {
+                                minifier.FileName = Path.GetFileName(file);
+                                string content = minifier.MinifyJavaScript(File.ReadAllText(file), settings);
+                                sbMin.AppendLine(content);
+                            }
+                        }
+                         
+                    }
+                    else if (extension.Equals(".css", StringComparison.OrdinalIgnoreCase))
+                    {
+                        foreach (string file in files.Keys)
+                        {
+                            string minFile = file.Insert(file.Length - 3, "min.");
+                            if (File.Exists(minFile))
+                            {
+                                sbMin.AppendLine(File.ReadAllText(minFile));
+                            }
+                            else
+                            {
+                                string minContent = MinifyFileMenu.MinifyString(extension, File.ReadAllText(file));
+                                sbMin.AppendLine(minContent);
+                            }
+                        }
+                    }
+
+                    ProjectHelpers.CheckOutFileFromSourceControl(minBundlePath);
+
+                    using (StreamWriter writer = new StreamWriter(minBundlePath, false, new UTF8Encoding(useBom)))
+                    {
+                        writer.Write(sbMin.ToString());
+                        Logger.Log("Updating min bundle : " + Path.GetFileName(minBundlePath));
+                    }
+                    MarginBase.AddFileToProject(filePath, minBundlePath);
+                    //end add by jackie
                 }
             }
         }
