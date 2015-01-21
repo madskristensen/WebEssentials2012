@@ -25,6 +25,20 @@ namespace MadsKristensen.EditorExtensions
             // Used for project compilation
         }
 
+        protected override bool CanCompileFileOnSave(string fullPath)
+        {
+            if (!WESettings.GetBoolean(WESettings.Keys.GenerateJsFileFromCoffeeScript))
+                return false;
+
+            if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(fullPath, "compiler", "coffeescript"))
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "CoffeeScript: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(fullPath)));
+                return false;
+            }
+            else
+                return true;
+        }
+
         public void CompileProject(EnvDTE.Project project)
         {
             if(project == null)

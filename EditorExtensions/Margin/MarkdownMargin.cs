@@ -35,6 +35,11 @@ namespace MadsKristensen.EditorExtensions
             }
         }
 
+        protected override bool CanCompileFileOnSave(string fullPath)
+        {
+            return true;
+        }
+
         protected override void StartCompiler(string source)
         {
             InitializeCompiler();

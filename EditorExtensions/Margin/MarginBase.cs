@@ -29,6 +29,8 @@ namespace MadsKristensen.EditorExtensions
             _dispatcher = Dispatcher.CurrentDispatcher;
         }
 
+        protected abstract bool CanCompileFileOnSave(string path);
+
         protected MarginBase(string source, string name, string contentType, bool showMargin, ITextDocument document)
         {
             Document = document;
@@ -51,6 +53,9 @@ namespace MadsKristensen.EditorExtensions
         {
             if (e.FileActionType == FileActionTypes.ContentSavedToDisk)
             {
+                if (!CanCompileFileOnSave(e.FilePath))
+                    return;
+
                 _dispatcher.BeginInvoke(new Action(() =>
                 {
                     _provider.Tasks.Clear();

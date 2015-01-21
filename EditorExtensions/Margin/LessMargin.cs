@@ -15,6 +15,20 @@ namespace MadsKristensen.EditorExtensions
             : base(source, MarginName, contentType, showMargin, document)
         { }
 
+        protected override bool CanCompileFileOnSave(string fullPath)
+        {
+            if (!WESettings.GetBoolean(WESettings.Keys.GenerateCssFileFromLess))
+                return false;
+
+            if (MadsKristensen.EditorExtensions.WEIgnore.TestWEIgnore(fullPath, "compiler", "less"))
+            {
+                Logger.Log(String.Format(CultureInfo.CurrentCulture, "LESS: The file {0} is ignored by .weignore. Skipping..", Path.GetFileName(fullPath)));
+                return false;
+            }
+            else
+                return true;
+        }
+
         protected override void StartCompiler(string source)
         {
             string fileName = GetCompiledFileName(Document.FilePath, ".css", UseCompiledFolder);// Document.FilePath.Replace(".less", ".css");
