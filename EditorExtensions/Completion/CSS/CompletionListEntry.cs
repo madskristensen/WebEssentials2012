@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.CSS.Editor;
-using Microsoft.CSS.Editor;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 
